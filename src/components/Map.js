@@ -1,46 +1,51 @@
-import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import { RiWalkLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { updateViewport } from "../slices/viewportSlice";
+import { updateUserPosition } from "../slices/userSlice";
+import { useEffect } from "react";
 
-function Map() {
-  const [viewport, setViewport] = useState({
-    latitude: 37.7577,
-    longitude: -122.4376,
-    width: "100vw",
-    height: "100vh",
-    zoom: 15,
-  });
+export default function Map() {
+  const dispatch = useDispatch();
 
-  const [userPosition, setUserPosition] = useState({
-    latitude: 37.7577,
-    longitude: -122.4376,
-  });
+  const viewport = useSelector((state) => state.viewport);
 
-  const positionOptions = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-  };
+  const user = useSelector((state) => state.user);
 
-  const onViewportChange = (newViewport) => {
-    setViewport({ ...newViewport });
+  const onViewportChange = (pos) => {
+    dispatch(
+      updateViewport({
+        latitude: pos.latitude,
+        longitude: pos.longitude,
+        zoom: pos.zoom,
+      })
+    );
   };
 
   const successPosition = (pos) => {
-    setViewport({
-      ...viewport,
-      latitude: pos.coords.latitude,
-      longitude: pos.coords.longitude,
-    });
+    dispatch(
+      updateViewport({
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude,
+        zoom: 15,
+      })
+    );
 
-    // TODO: eliminar setUserPosition cuando se solucione el problema con setInterval
-    setUserPosition({
-      latitude: pos.coords.latitude,
-      longitude: pos.coords.longitude,
-    });
+    dispatch(
+      updateUserPosition({
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude,
+      })
+    );
   };
 
   const errorPosition = (error) => {
     console.warn("ERROR(" + error.code + "): " + error.message);
+  };
+
+  const positionOptions = {
+    enableHighAccuracy: true,
+    timeout: 5000,
   };
 
   useEffect(() => {
@@ -52,24 +57,6 @@ function Map() {
     // eslint-disable-next-line
   }, []);
 
-  // TODO: solucionar el setInterval para actualizar posicion por que laggea y termina crasheando
-  /*
-  const successUserPosition = (pos) => {
-    setUserPosition({
-      latitude: pos.coords.latitude,
-      longitude: pos.coords.longitude,
-    });
-  };
-  
-  setInterval(() => {
-    navigator.geolocation.getCurrentPosition(
-      successUserPosition,
-      errorPosition,
-      positionOptions
-    );
-  }, 5000);
-  */
-
   return (
     <ReactMapGL
       {...viewport}
@@ -77,14 +64,9 @@ function Map() {
       mapStyle="mapbox://styles/francoarossi/ckhe0w2rt08ff19nyff5iii23"
       onViewportChange={onViewportChange}
     >
-      <Marker
-        latitude={userPosition.latitude}
-        longitude={userPosition.longitude}
-      >
+      <Marker latitude={user.latitude} longitude={user.longitude}>
         <RiWalkLine size={32} />
       </Marker>
     </ReactMapGL>
   );
 }
-
-export default Map;
