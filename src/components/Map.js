@@ -1,24 +1,22 @@
-import ReactMapGL, { Marker } from "react-map-gl";
-import { RiWalkLine } from "react-icons/ri";
+import ReactMapGL from "react-map-gl";
 import { useDispatch, useSelector } from "react-redux";
 import { updateViewport } from "../slices/viewportSlice";
 import { updateUserPosition } from "../slices/userSlice";
 import { useEffect } from "react";
-import Logo from "./Logo";
+import UserGeolocator from "./UserGeolocator";
+import SpotsMarkers from "./SpotsMarkers";
 
 export default function Map() {
   const dispatch = useDispatch();
 
   const viewport = useSelector((state) => state.viewport);
 
-  const user = useSelector((state) => state.user);
-
-  const onViewportChange = (pos) => {
+  const onViewportChange = (newViewport) => {
     dispatch(
       updateViewport({
-        latitude: pos.latitude,
-        longitude: pos.longitude,
-        zoom: pos.zoom,
+        latitude: newViewport.latitude,
+        longitude: newViewport.longitude,
+        zoom: newViewport.zoom,
       })
     );
   };
@@ -64,12 +62,11 @@ export default function Map() {
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/francoarossi/ckhe0w2rt08ff19nyff5iii23"
       onViewportChange={onViewportChange}
+      style={{ position: "absolute" }}
+      maxZoom={18}
     >
-      <Marker latitude={user.latitude} longitude={user.longitude}>
-        <RiWalkLine size={32} />
-      </Marker>
-      <Logo /> 
+      <UserGeolocator />
+      <SpotsMarkers />
     </ReactMapGL>
   );
-
 }

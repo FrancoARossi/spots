@@ -1,5 +1,5 @@
 import { GeolocateControl } from "react-map-gl";
-import { updateUserPosition } from "../../slices/userSlice";
+import { updateUserPosition } from "../slices/userSlice";
 import { useDispatch } from "react-redux";
 
 export default function Geolocator() {
@@ -16,9 +16,9 @@ export default function Geolocator() {
 
   const geolocateStyle = {
     position: "absolute",
-    top: 0,
-    left: 0,
-    margin: 10,
+    bottom: 0,
+    right: 0,
+    margin: 30,
   };
 
   return (
