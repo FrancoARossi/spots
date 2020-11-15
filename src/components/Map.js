@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateViewport } from "../slices/viewportSlice";
 import { updateUserPosition } from "../slices/userSlice";
 import { useEffect } from "react";
+import Logo from "./Logo";
 
 export default function Map() {
   const dispatch = useDispatch();
@@ -67,6 +68,8 @@ export default function Map() {
       <Marker latitude={user.latitude} longitude={user.longitude}>
         <RiWalkLine size={32} />
       </Marker>
+      <Logo /> 
     </ReactMapGL>
   );
+
 }

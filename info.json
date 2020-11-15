@@ -1,0 +1,18 @@
+{
+    "spots": [
+        {
+            "id": 1,
+            "name": "Country Club Los Cardales",
+            "description": "Club de campo",
+            "latitude": -34.3129451,
+            "longitude": -58.9602354
+        },
+        {
+            "id": 2,
+            "name": "Barrio Las Lomadas",
+            "description": "Residencial",
+            "latitude": -34.3198012,
+            "longitude": -58.9518397
+        }
+    ]
+}
