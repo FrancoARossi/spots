@@ -13,6 +13,13 @@
             "description": "Residencial",
             "latitude": -34.3198012,
             "longitude": -58.9518397
+        },
+        {
+            "id": 3,
+            "name": "Estacion San Antonio de Areco",
+            "description": "Antigua estacion de trenes",
+            "latitude": -34.258162,
+            "longitude": -59.480152
         }
     ]
 }
