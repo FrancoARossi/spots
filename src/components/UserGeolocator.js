@@ -16,9 +16,8 @@ export default function Geolocator() {
 
   const geolocateStyle = {
     position: "absolute",
-    bottom: 0,
-    right: 0,
-    margin: 30,
+    bottom: 85,
+    right: 15,
   };
 
   return (
