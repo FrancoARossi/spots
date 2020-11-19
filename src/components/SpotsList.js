@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpots } from "../slices/spotsSlice";
+import "../css/SpotsList.css";
 
 export default function SpotsList({ proximity }) {
   const spots = useSelector((state) => state.spots.spotsList);
@@ -8,8 +9,6 @@ export default function SpotsList({ proximity }) {
   const userPosition = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-
-  //TODO: fix this
 
   useEffect(() => {
     if (!proximity && fetchStatus === "idle") {
@@ -20,5 +19,17 @@ export default function SpotsList({ proximity }) {
     // eslint-disable-next-line
   }, []);
 
-  return spots.map((spot) => <div>{spot.name}</div>);
+  return (
+    <div>
+      <ul className="spot-list">
+        {spots.map((spot) => (
+          <li key={spot.id}>
+            <button style={{ width: "100%", marginLeft: "100%" }}>
+              {spot.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
