@@ -4,7 +4,6 @@
   z-index: 1;
   margin-top: 200px;
   align-items: center; /** Y-axis align **/
-  justify-content: center; /** X-axis align **/
 }
 
 .spot {

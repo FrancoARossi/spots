@@ -61,7 +61,7 @@ const spotsSlice = createSlice({
           state.spotsList.push({
             id: spot.id,
             name: spot.name,
-            descripcion: spot.descripcion,
+            description: spot.descripcion,
             latitude: spot.latitude,
             longitude: spot.longitude,
           });
@@ -79,7 +79,15 @@ const spotsSlice = createSlice({
                 userPosition: action.payload.userPosition,
               })
           )
-          .forEach((spot) => updateSpots(spot));
+          .forEach((spot) => {
+            state.spotsList.push({
+              id: spot.id,
+              name: spot.name,
+              descripcion: spot.descripcion,
+              latitude: spot.latitude,
+              longitude: spot.longitude,
+            });
+          });
       }
       state.status = "idle";
       return state;

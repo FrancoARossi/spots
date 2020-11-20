@@ -18,8 +18,6 @@ function App() {
           <Route path="/spotList">
             <SpotsList proximity={true} />
           </Route>
-          {/* <Route path={`/spot/${spot.id}`}>
-          </Route> */}
         </Switch>
         <Navigation />
       </Router>
