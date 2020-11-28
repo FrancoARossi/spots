@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpots } from "../slices/spotsSlice";
-import "../css/SpotsList.css";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
+import Spot from "./Spot";
 
 export default function SpotsList({ proximity }) {
   const spots = useSelector((state) => state.spots.spotsList);
@@ -24,17 +24,26 @@ export default function SpotsList({ proximity }) {
 
   return (
     <div>
-      <ul className="spot-list">
-        {spots.map((spot) => (
+      {spots.map((spot) => (
+        <div>
           <Link key={spot.id} to={`/spot/${spot.id}`}>
-            <li key={spot.id}>
-              <button style={{ width: "100%", marginLeft: "100%" }}>
-                {spot.name}
-              </button>
-            </li>
+            <button
+              style={{
+                zIndex: "10",
+                justifyContent: "space-evenly",
+                alignContent: "center",
+                position: "relative",
+                left: "50%",
+                textAlign: "center",
+              }}
+              className="btn btn-lg btn-primary"
+              key={spot.id}
+            >
+              {spot.name}
+            </button>
           </Link>
-        ))}
-      </ul>
+        </div>
+      ))}
     </div>
   );
 }
