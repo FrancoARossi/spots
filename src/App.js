@@ -1,14 +1,10 @@
 import React from "react";
 import "./css/App.css";
 import Map from "./components/Map";
-import Logo from "./components/Logo";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Tags from "./components/Tags";
+import SpotsList from "./components/SpotsList";
 
 function App() {
   return (
@@ -20,10 +16,8 @@ function App() {
             <Map />
           </Route>
           <Route path="/spotList">
-            {/* spotList component */}
+            <SpotsList proximity={true} />
           </Route>
-          {/* <Route path={`/spot/${spot.id}`}>
-          </Route> */}
         </Switch>
         <Navigation />
       </Router>

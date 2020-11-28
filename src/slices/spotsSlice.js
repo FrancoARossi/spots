@@ -47,25 +47,25 @@ export const distanceToUser = ({ spot, userPosition }) => {
 const spotsSlice = createSlice({
   name: "spots",
   initialState,
-  reducers: {
-    updateSpots(state, action) {
-      state.spotsList.push({
-        id: action.payload.id,
-        name: action.payload.name,
-        descripcion: action.payload.descripcion,
-        latitude: action.payload.latitude,
-        longitude: action.payload.longitude,
-      });
-    },
-  },
+  reducers: {},
   extraReducers: {
     [fetchSpots.pending]: (state, action) => {
       state.status = "loading";
+      return state;
     },
     [fetchSpots.fulfilled]: (state, action) => {
       state.status = "succeded";
+      state.spotsList = [];
       if (!action.payload.proximity) {
-        action.payload.spots.forEach((spot) => updateSpots(spot));
+        action.payload.spots.forEach((spot) => {
+          state.spotsList.push({
+            id: spot.id,
+            name: spot.name,
+            description: spot.descripcion,
+            latitude: spot.latitude,
+            longitude: spot.longitude,
+          });
+        });
       } else {
         action.payload.spots
           .sort(
@@ -79,14 +79,23 @@ const spotsSlice = createSlice({
                 userPosition: action.payload.userPosition,
               })
           )
-          .forEach((spot) => updateSpots(spot));
+          .forEach((spot) => {
+            state.spotsList.push({
+              id: spot.id,
+              name: spot.name,
+              descripcion: spot.descripcion,
+              latitude: spot.latitude,
+              longitude: spot.longitude,
+            });
+          });
       }
-      state.spotsList = state.spotsList.concat(action.payload.spots);
       state.status = "idle";
+      return state;
     },
     [fetchSpots.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
+      return state;
     },
   },
 });

@@ -1,0 +1,11 @@
+.spot-list {
+  list-style-type: none;
+  position: absolute;
+  z-index: 1;
+  margin-top: 200px;
+  align-items: center; /** Y-axis align **/
+}
+
+.spot {
+  color: black;
+}
