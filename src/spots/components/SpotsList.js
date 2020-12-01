@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-const SpotsList = ({ state }) => {
-  const spots = state.spots.spotsList;
+const SpotsList = ({ spotsList }) => {
+  const spots = spotsList;
 
   return (
     <div>

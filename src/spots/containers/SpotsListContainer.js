@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import SpotsList from "../components/SpotsList";
 
 const mapStateToProps = (state) => ({
-  spots: { ...state.spots },
+  spotsList: state.spots.spotsList,
 });
 
 export default connect(mapStateToProps)(SpotsList);
