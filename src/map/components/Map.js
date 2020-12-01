@@ -1,15 +1,11 @@
 import ReactMapGL from "react-map-gl";
-import { useDispatch, useSelector } from "react-redux";
-import { updateViewport } from "../slices/viewportSlice";
-import { updateUserPosition } from "../slices/userSlice";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import UserGeolocator from "./UserGeolocator";
-import SpotsMarkers from "./SpotsMarkers";
+import GeolocatorContainer from "../../user/containers/GeolocatorContainer";
+import SpotsMarkersContainer from "../../spots/containers/SpotsMarkersContainer";
 
-export default function Map() {
+const Map = ({ viewport, updateViewport, updateUserPosition }) => {
   const dispatch = useDispatch();
-
-  const viewport = useSelector((state) => state.viewport);
 
   const onViewportChange = (newViewport) => {
     dispatch(
@@ -65,8 +61,10 @@ export default function Map() {
       style={{ position: "absolute" }}
       maxZoom={18}
     >
-      <UserGeolocator />
-      <SpotsMarkers />
+      <GeolocatorContainer />
+      <SpotsMarkersContainer />
     </ReactMapGL>
   );
-}
+};
+
+export default Map;

@@ -1,8 +1,7 @@
 import { GeolocateControl } from "react-map-gl";
-import { updateUserPosition } from "../slices/userSlice";
 import { useDispatch } from "react-redux";
 
-export default function Geolocator() {
+const Geolocator = ({ updateUserPosition }) => {
   const dispatch = useDispatch();
 
   const onGeolocate = (pos) => {
@@ -28,4 +27,6 @@ export default function Geolocator() {
       style={geolocateStyle}
     />
   );
-}
+};
+
+export default Geolocator;

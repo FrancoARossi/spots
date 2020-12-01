@@ -1,23 +1,17 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSpots } from "../slices/spotsSlice";
-import { Link, Route, Switch } from "react-router-dom";
-import Spot from "./Spot";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
-export default function SpotsList({ proximity }) {
-  const spots = useSelector((state) => state.spots.spotsList);
-  const fetchStatus = useSelector((state) => state.spots.status);
-  const userPosition = useSelector((state) => state.user);
+const SpotsList = ({ state, getSpotsRequest }) => {
+  const spots = state.spots.spotsList;
+  const status = state.spots.status;
+  const userPosition = state.user;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!proximity && fetchStatus === "idle") {
-      dispatch(fetchSpots({ proximity: proximity }));
-    } else if (fetchStatus === "idle") {
-      dispatch(
-        fetchSpots({ proximity: proximity, userPosition: userPosition })
-      );
+    if (status === "idle") {
+      dispatch(getSpotsRequest(userPosition));
     }
     // eslint-disable-next-line
   }, []);
@@ -46,4 +40,6 @@ export default function SpotsList({ proximity }) {
       ))}
     </div>
   );
-}
+};
+
+export default SpotsList;

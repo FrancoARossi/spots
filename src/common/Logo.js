@@ -1,5 +1,5 @@
 import logo from "../logo.png";
-import SpotsList from "./SpotsList";
+import SpotsList from "../spots/components/SpotsList";
 
 export default function Logo() {
   return (

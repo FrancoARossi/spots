@@ -1,12 +1,12 @@
 import React from "react";
-import "./css/App.css";
-import Map from "./components/Map";
+import "./styles/App.css";
+import MapContainer from "./map/containers/MapContainer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import Tags from "./components/Tags";
-import SpotsList from "./components/SpotsList";
+import Navigation from "./common/Navigation";
+import Tags from "./common/Tags";
+import SpotsListContainer from "./spots/containers/SpotsListContainer";
 import { useSelector } from "react-redux";
-import Spot from "./components/Spot";
+import Spot from "./spots/components/Spot";
 
 function App() {
   const spots = useSelector((state) => state.spots.spotsList);
@@ -17,16 +17,15 @@ function App() {
         <Tags />
         <Switch>
           <Route path="/" exact>
-            <Map />
+            <MapContainer />
           </Route>
           <Route path="/spotList">
-            <SpotsList proximity={true} />
+            <SpotsListContainer />
           </Route>
           {spots.map((spot) => (
-            <Route
-              path={`/spot/${spot.id}`}
-              component={() => <Spot id={spot.id} />}
-            />
+            <Route path={`/spot/${spot.id}`}>
+              <Spot id={spot.id} />
+            </Route>
           ))}
         </Switch>
         <Navigation />

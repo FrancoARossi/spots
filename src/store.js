@@ -1,12 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import viewportReducers from "./slices/viewportSlice";
-import userReducers from "./slices/userSlice";
-import spotsReducers from "./slices/spotsSlice";
+import rootReducer from "./reducers/rootReducer";
+import spotsMiddleware from "./spots/spots.middleware";
 
 export default configureStore({
-  reducer: {
-    viewport: viewportReducers,
-    user: userReducers,
-    spots: spotsReducers,
-  },
+  reducer: rootReducer,
+  middleware: [spotsMiddleware],
 });
