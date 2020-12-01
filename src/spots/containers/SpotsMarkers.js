@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import SpotsMarkers from "../components/SpotsMarkers";
+import Markers from "../components/Markers";
 import actions from "../spots.actions";
 
 const mapStateToProps = (state) => ({
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(actions.getSpotsRequest(userPosition)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpotsMarkers);
+export default connect(mapStateToProps, mapDispatchToProps)(Markers);

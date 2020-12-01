@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Geolocator from "../components/Geolocator";
+import GeolocationController from "../components/GeolocationController";
 import actions from "../user.actions";
 
 const mapStateToProps = (state) => ({});
@@ -10,4 +10,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Geolocator);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GeolocationController);

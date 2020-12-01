@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import SpotsList from "../components/SpotsList";
+import SpotsListScreen from "../components/SpotsListScreen";
 
 const mapStateToProps = (state) => ({
   spotsList: state.spots.spotsList,
 });
 
-export default connect(mapStateToProps)(SpotsList);
+export default connect(mapStateToProps)(SpotsListScreen);

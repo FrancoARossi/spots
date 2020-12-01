@@ -1,7 +1,7 @@
 import ReactMapGL from "react-map-gl";
 import { useEffect } from "react";
-import GeolocatorContainer from "../../user/containers/GeolocatorContainer";
-import SpotsMarkersContainer from "../../spots/containers/SpotsMarkersContainer";
+import Geolocator from "../../user/containers/Geolocator";
+import SpotsMarkers from "../../spots/containers/SpotsMarkers";
 
 const Map = ({ viewport, updateViewport, updateUserPosition }) => {
   const onViewportChange = (newViewport) => {
@@ -52,8 +52,8 @@ const Map = ({ viewport, updateViewport, updateUserPosition }) => {
       style={{ position: "absolute" }}
       maxZoom={18}
     >
-      <GeolocatorContainer />
-      <SpotsMarkersContainer />
+      <Geolocator />
+      <SpotsMarkers />
     </ReactMapGL>
   );
 };

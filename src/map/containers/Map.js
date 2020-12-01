@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Map from "../components/Map";
+import MapScreen from "../components/MapScreen";
 import rootAction from "../../actions/rootAction";
 
 const mapStateToProps = (state) => ({
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(rootAction.user.updateUserPosition(newPosition)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Map);
+export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);
