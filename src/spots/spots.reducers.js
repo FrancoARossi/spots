@@ -1,4 +1,3 @@
-import { responsesAreSame } from "workbox-broadcast-update";
 import {
   GET_SPOTS_REQUEST,
   GET_SPOTS_RESPONSE,

@@ -1,21 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-const SpotsList = ({ state, getSpotsRequest }) => {
+const SpotsList = ({ state }) => {
   const spots = state.spots.spotsList;
-  const status = state.spots.status;
-  const userPosition = state.user;
-  console.log(state);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (status === "idle") {
-      dispatch(getSpotsRequest(userPosition));
-    }
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <div>

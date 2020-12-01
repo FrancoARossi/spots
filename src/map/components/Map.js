@@ -1,31 +1,22 @@
 import ReactMapGL from "react-map-gl";
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import GeolocatorContainer from "../../user/containers/GeolocatorContainer";
 import SpotsMarkersContainer from "../../spots/containers/SpotsMarkersContainer";
 
 const Map = ({ viewport, updateViewport, updateUserPosition }) => {
-  const dispatch = useDispatch();
-
   const onViewportChange = (newViewport) => {
-    console.log("DEBUG: OnViewportChange");
-    dispatch(
-      updateViewport({
-        latitude: newViewport.latitude,
-        longitude: newViewport.longitude,
-        zoom: newViewport.zoom,
-      })
-    );
+    updateViewport({
+      latitude: newViewport.latitude,
+      longitude: newViewport.longitude,
+      zoom: newViewport.zoom,
+    });
   };
 
   const successPosition = (pos) => {
-    console.log("DEBUG: successPosition");
-    dispatch(
-      updateUserPosition({
-        latitude: pos.coords.latitude,
-        longitude: pos.coords.longitude,
-      })
-    );
+    updateUserPosition({
+      latitude: pos.coords.latitude,
+      longitude: pos.coords.longitude,
+    });
   };
 
   const errorPosition = (error) => {

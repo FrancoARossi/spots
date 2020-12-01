@@ -1,25 +1,19 @@
 import { useEffect, useState } from "react";
 import { Marker, Popup } from "react-map-gl";
-import { useDispatch } from "react-redux";
 
-const SpotsMarkers = ({ state, getSpotsRequest }) => {
-  const spots = state.spotsList;
-  const status = state.status;
-
-  const dispatch = useDispatch();
-
+const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
   const [selectedSpot, setSelectedSpot] = useState(null);
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(getSpotsRequest());
+      getSpotsRequest(userPosition);
     }
     // eslint-disable-next-line
   }, []);
 
   return (
     <div>
-      {spots.map((spot) => (
+      {spotsList.map((spot) => (
         <Marker
           key={spot.id}
           latitude={spot.latitude}

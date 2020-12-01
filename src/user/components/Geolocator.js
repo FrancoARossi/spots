@@ -1,16 +1,11 @@
 import { GeolocateControl } from "react-map-gl";
-import { useDispatch } from "react-redux";
 
 const Geolocator = ({ updateUserPosition }) => {
-  const dispatch = useDispatch();
-
-  const onGeolocate = (pos) => {
-    dispatch(
-      updateUserPosition({
-        latitude: pos.coords.latitude,
-        longitude: pos.coords.longitude,
-      })
-    );
+  const geolocate = (pos) => {
+    updateUserPosition({
+      latitude: pos.coords.latitude,
+      longitude: pos.coords.longitude,
+    });
   };
 
   const geolocateStyle = {
@@ -21,7 +16,7 @@ const Geolocator = ({ updateUserPosition }) => {
 
   return (
     <GeolocateControl
-      onGeolocate={onGeolocate}
+      onGeolocate={geolocate}
       trackUserLocation={true}
       label="Center"
       style={geolocateStyle}

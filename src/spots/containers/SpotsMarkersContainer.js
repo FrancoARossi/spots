@@ -3,11 +3,14 @@ import SpotsMarkers from "../components/SpotsMarkers";
 import actions from "../spots.actions";
 
 const mapStateToProps = (state) => ({
-  spots: { ...state.spots },
+  spotsList: state.spots.spotsList,
+  status: state.spots.status,
+  userPosition: { ...state.user },
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getSpotsRequest: () => dispatch(actions.getSpotsRequest()),
+  getSpotsRequest: (userPosition) =>
+    dispatch(actions.getSpotsRequest(userPosition)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpotsMarkers);
