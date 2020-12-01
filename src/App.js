@@ -16,14 +16,14 @@ function App() {
       <Router>
         <Tags />
         <Switch>
-          <Route path="/" exact>
+          <Route exact path="/">
             <MapContainer />
           </Route>
-          <Route path="/spotList">
+          <Route exact path="/spotList">
             <SpotsListContainer />
           </Route>
           {spots.map((spot) => (
-            <Route path={`/spot/${spot.id}`}>
+            <Route exact path={`/spot/${spot.id}`} key={spot.id}>
               <Spot id={spot.id} />
             </Route>
           ))}

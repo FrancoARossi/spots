@@ -19,7 +19,6 @@ const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
           latitude={spot.latitude}
           longitude={spot.longitude}
         >
-          {/* <GiPositionMarker key={spot.id} size={30} /> */}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -27,6 +26,7 @@ const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
             }}
             className="btn btn-sm"
           >
+            {/*TODO: Solucionar warnings del svg*/}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
