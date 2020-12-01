@@ -17,6 +17,12 @@ const Map = ({ viewport, updateViewport, updateUserPosition }) => {
       latitude: pos.coords.latitude,
       longitude: pos.coords.longitude,
     });
+
+    updateViewport({
+      latitude: pos.coords.latitude,
+      longitude: pos.coords.longitude,
+      zoom: 15,
+    });
   };
 
   const errorPosition = (error) => {
