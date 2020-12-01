@@ -18,6 +18,7 @@ const orderSpotsByDistanceToUser = (spotsList, userPosition) => {
 };
 
 const spotsMiddleware = ({ dispatch }) => (next) => (action) => {
+  //FIXME: Map pasa 2 veces por el middleware con un solo dispatch y la segunda vez el action es undefined (?)
   console.log(action);
   next(action);
   switch (action.type) {

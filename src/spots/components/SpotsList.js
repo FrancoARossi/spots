@@ -6,6 +6,7 @@ const SpotsList = ({ state, getSpotsRequest }) => {
   const spots = state.spots.spotsList;
   const status = state.spots.status;
   const userPosition = state.user;
+  console.log(state);
 
   const dispatch = useDispatch();
 

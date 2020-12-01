@@ -3,7 +3,7 @@ import SpotsMarkers from "../components/SpotsMarkers";
 import actions from "../spots.actions";
 
 const mapStateToProps = (state) => ({
-  ...state.spots,
+  spots: { ...state.spots },
 });
 
 const mapDispatchToProps = (dispatch) => ({

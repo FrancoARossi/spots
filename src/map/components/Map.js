@@ -8,6 +8,7 @@ const Map = ({ viewport, updateViewport, updateUserPosition }) => {
   const dispatch = useDispatch();
 
   const onViewportChange = (newViewport) => {
+    console.log("DEBUG: OnViewportChange");
     dispatch(
       updateViewport({
         latitude: newViewport.latitude,
@@ -18,14 +19,7 @@ const Map = ({ viewport, updateViewport, updateUserPosition }) => {
   };
 
   const successPosition = (pos) => {
-    dispatch(
-      updateViewport({
-        latitude: pos.coords.latitude,
-        longitude: pos.coords.longitude,
-        zoom: 15,
-      })
-    );
-
+    console.log("DEBUG: successPosition");
     dispatch(
       updateUserPosition({
         latitude: pos.coords.latitude,
