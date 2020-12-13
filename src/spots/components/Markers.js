@@ -6,7 +6,7 @@ const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
 
   useEffect(() => {
     if (status === "idle") {
-      getSpotsRequest(userPosition);
+      getSpotsRequest(userPosition, []);
     }
     // eslint-disable-next-line
   }, []);

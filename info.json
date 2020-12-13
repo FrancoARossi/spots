@@ -6,7 +6,7 @@
       "description": "Club de campo",
       "latitude": -34.3129451,
       "longitude": -58.9602354,
-      "tags": ["Parque", "Naturaleza"]
+      "tags": ["parque", "naturaleza"]
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "description": "Residencial",
       "latitude": -34.3198012,
       "longitude": -58.9518397,
-      "tags": ["Urbano"]
+      "tags": ["urbano"]
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "description": "Antigua estacion de trenes",
       "latitude": -34.258162,
       "longitude": -59.480152,
-      "tags": ["Urbano", "Interior"]
+      "tags": ["urbano", "interior"]
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "description": "A la vuelta de mi casa :)",
       "latitude": -34.258907,
       "longitude": -59.473733,
-      "tags": ["Naturaleza", "Urbano"]
+      "tags": ["naturaleza", "urbano"]
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "description": "Plaza principal de San Antonio de Areco",
       "latitude": -34.243661,
       "longitude": -59.47358,
-      "tags": ["Parque"]
+      "tags": ["parque"]
     }
   ]
 }

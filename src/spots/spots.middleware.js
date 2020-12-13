@@ -1,9 +1,9 @@
 import actions from "../actions/rootAction";
 import { services } from "./spots.services";
 import { GET_SPOTS_REQUEST } from "./spots.actions";
-import { distanceToUser } from "../common/DistanceToUser";
+import { distanceToUser } from "../utils/distanceToUser";
 
-const orderSpotsByDistanceToUser = (spotsList, userPosition) => {
+const sortSpotsByDistanceToUser = (spotsList, userPosition) => {
   return spotsList.sort(
     (spot1, spot2) =>
       distanceToUser({
@@ -17,6 +17,10 @@ const orderSpotsByDistanceToUser = (spotsList, userPosition) => {
   );
 };
 
+const filterSpotByTags = (spot, tagsList) => {
+  return tagsList.every((tag) => spot.tags.includes(tag));
+};
+
 const spotsMiddleware = ({ dispatch }) => (next) => (action) => {
   next(action);
   switch (action.type) {
@@ -24,10 +28,25 @@ const spotsMiddleware = ({ dispatch }) => (next) => (action) => {
       services
         .getSpots()
         .then((response) => {
-          let spotsList = orderSpotsByDistanceToUser(response, action.payload);
+          var spotsList = [];
+          if (action.payload.tagsList) {
+            spotsList = response.filter((spot) =>
+              filterSpotByTags(spot, action.payload.tagsList)
+            );
+            spotsList = sortSpotsByDistanceToUser(
+              spotsList,
+              action.payload.userPosition
+            );
+          } else {
+            spotsList = sortSpotsByDistanceToUser(
+              response,
+              action.payload.userPosition
+            );
+          }
           dispatch(actions.spots.getSpotsResponse(spotsList));
         })
         .catch((error) => {
+          console.log("DEBUG");
           dispatch(actions.spots.getSpotsError(error));
         });
       break;

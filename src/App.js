@@ -3,7 +3,7 @@ import "./styles/App.css";
 import Map from "./map/containers/Map";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navigation from "./common/Navigation";
-import Tags from "./common/Tags";
+import Tags from "./tags/containers/Tags";
 import SpotsList from "./spots/containers/SpotsList";
 import { useSelector } from "react-redux";
 import SpotScreen from "./spots/components/SpotScreen";

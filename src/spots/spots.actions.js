@@ -3,9 +3,9 @@ export const GET_SPOTS_RESPONSE = "GET_SPOTS_RESPONSE";
 export const GET_SPOTS_ERROR = "GET_SPOTS_ERROR";
 
 const spots = {
-  getSpotsRequest: (userPosition) => ({
+  getSpotsRequest: (userPosition, tagsList) => ({
     type: GET_SPOTS_REQUEST,
-    payload: userPosition,
+    payload: { userPosition: userPosition, tagsList: tagsList },
   }),
   getSpotsResponse: (response) => ({
     type: GET_SPOTS_RESPONSE,
