@@ -1,7 +1,9 @@
+import axios from "axios";
+
 export const get = (url) =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
+  axios
+    .get(url)
+    .then((response) => {
+      return response.data;
     })
     .catch((error) => console.log(error));
