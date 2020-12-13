@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Tags = ({
   tagsList,
@@ -6,12 +6,30 @@ const Tags = ({
   getSpotsRequest,
   updateFilterTags,
 }) => {
+  const tagUnselected = "btn btn-sm btn-light";
+  const tagSelected = "btn btn-sm btn-primary";
+  const [buttonsState, setButtonsState] = useState({
+    parque: tagUnselected,
+    urbano: tagUnselected,
+    interior: tagUnselected,
+    naturaleza: tagUnselected,
+  });
+
   const onClickHandle = (tag) => {
+    switch (buttonsState[tag]) {
+      case tagUnselected:
+        setButtonsState({ ...buttonsState, [tag]: tagSelected });
+        break;
+      case tagSelected:
+        setButtonsState({ ...buttonsState, [tag]: tagUnselected });
+        break;
+      default:
+        break;
+    }
     updateFilterTags(tag);
     getSpotsRequest(userPosition, tagsList);
   };
 
-  //TODO: Tags should change color when activated
   return (
     <div
       style={{
@@ -24,25 +42,25 @@ const Tags = ({
       }}
     >
       <button
-        className="btn btn-sm btn-light"
+        className={buttonsState["parque"]}
         onClick={() => onClickHandle("parque")}
       >
         Parque
       </button>
       <button
-        className="btn btn-sm btn-light"
+        className={buttonsState["urbano"]}
         onClick={() => onClickHandle("urbano")}
       >
         Urbano
       </button>
       <button
-        className="btn btn-sm btn-light"
+        className={buttonsState["interior"]}
         onClick={() => onClickHandle("interior")}
       >
         Interior
       </button>
       <button
-        className="btn btn-sm btn-light"
+        className={buttonsState["naturaleza"]}
         onClick={() => onClickHandle("naturaleza")}
       >
         Naturaleza
