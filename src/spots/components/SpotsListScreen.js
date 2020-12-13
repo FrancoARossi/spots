@@ -4,19 +4,12 @@ const SpotsList = ({ spotsList }) => {
   const spots = spotsList;
 
   return (
-    <div>
+    <div style={{width: "100%", position: "absolute",top: "80px"}}>
       {spots.map((spot) => (
         <div>
           <Link key={spot.id} to={`/spot/${spot.id}`}>
             <button
-              style={{
-                zIndex: "10",
-                justifyContent: "space-evenly",
-                alignContent: "center",
-                position: "relative",
-                left: "50%",
-                textAlign: "center",
-              }}
+              style={{width: "100%", marginTop: ".5em"}}
               className="btn btn-lg btn-primary"
               key={spot.id}
             >
