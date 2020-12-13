@@ -17,9 +17,11 @@ const Geolocator = ({ updateUserPosition }) => {
   return (
     <GeolocateControl
       onGeolocate={geolocate}
+      positionOptions={{ enableHighAccuracy: true }}
       trackUserLocation={true}
       label="Center"
       style={geolocateStyle}
+      auto={true}
     />
   );
 };

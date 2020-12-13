@@ -7,3 +7,14 @@ export const get = (url) =>
       return response.data;
     })
     .catch((error) => console.log(error));
+
+//TODO: WIP (waiting for backend)
+export const post = (url, spot) =>
+  axios
+    .post(url, spot)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
