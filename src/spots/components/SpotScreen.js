@@ -5,8 +5,18 @@ const Spot = ({ id }) => {
   const spot = spotsList.filter((spot) => spot.id === id)[0];
 
   return (
-    <div style={{position: "relative", top: "80px", textAlign: "center"}}>
-      <h1 style={{ fontSize: "1.8rem"}}>{spot.name}</h1>
+    <div
+      style={{
+        position: "relative",
+        top: "80px",
+        textAlign: "center",
+      }}
+    >
+      <h2 style={{ fontSize: "2rem", padding: "30px" }}>{spot.name}</h2>
+      <div style={{ fontSize: "1.1rem" }}>
+        <p>{spot.description}</p>
+        <p>Tags: {spot.tags.join(", ")}</p>
+      </div>
     </div>
   );
 };

@@ -14,10 +14,16 @@ const Geolocator = ({ updateUserPosition }) => {
     right: 15,
   };
 
+  const positionOptions = {
+    enableHighAccuracy: true,
+    maximumAge: 20000,
+    timeout: 2000,
+  };
+
   return (
     <GeolocateControl
       onGeolocate={geolocate}
-      positionOptions={{ enableHighAccuracy: true }}
+      positionOptions={positionOptions}
       trackUserLocation={true}
       label="Center"
       style={geolocateStyle}

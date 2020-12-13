@@ -52,7 +52,23 @@ const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
             setSelectedSpot(null);
           }}
         >
-          <h1 style={{padding: ".25em", fontSize: "1.5em", fontWeight: "lighter"}}>{selectedSpot.name}</h1>
+          <div
+            style={{
+              padding: ".25em",
+              fontSize: "1.5em",
+              fontWeight: "lighter",
+            }}
+          >
+            <h1>{selectedSpot.name}</h1>
+            <div
+              style={{
+                fontSize: ".7em",
+              }}
+            >
+              <p>{selectedSpot.description}</p>
+              <p>Tags: {selectedSpot.tags.join(", ")}</p>
+            </div>
+          </div>
         </Popup>
       ) : null}
     </div>

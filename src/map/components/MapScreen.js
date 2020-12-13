@@ -31,7 +31,8 @@ const Map = ({ viewport, updateViewport, updateUserPosition }) => {
 
   const positionOptions = {
     enableHighAccuracy: true,
-    timeout: 5000,
+    maximumAge: 20000,
+    timeout: 2000,
   };
 
   useEffect(() => {
