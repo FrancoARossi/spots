@@ -5,35 +5,40 @@
       "name": "Country Club Los Cardales",
       "description": "Club de campo",
       "latitude": -34.3129451,
-      "longitude": -58.9602354
+      "longitude": -58.9602354,
+      "tags": ["Parque", "Naturaleza"]
     },
     {
       "id": 2,
       "name": "Barrio Las Lomadas",
       "description": "Residencial",
       "latitude": -34.3198012,
-      "longitude": -58.9518397
+      "longitude": -58.9518397,
+      "tags": ["Urbano"]
     },
     {
       "id": 3,
       "name": "Estacion San Antonio de Areco",
       "description": "Antigua estacion de trenes",
       "latitude": -34.258162,
-      "longitude": -59.480152
+      "longitude": -59.480152,
+      "tags": ["Urbano", "Interior"]
     },
     {
       "id": 4,
       "name": "A la vuelta",
       "description": "A la vuelta de mi casa :)",
       "latitude": -34.258907,
-      "longitude": -59.473733
+      "longitude": -59.473733,
+      "tags": ["Naturaleza", "Urbano"]
     },
     {
       "id": 5,
       "name": "Plaza Principal",
       "description": "Plaza principal de San Antonio de Areco",
       "latitude": -34.243661,
-      "longitude": -59.47358
+      "longitude": -59.47358,
+      "tags": ["Parque"]
     }
   ]
 }
