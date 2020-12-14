@@ -15,9 +15,9 @@ const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
     <div>
       {spotsList.map((spot) => (
         <Marker
-          key={spot.id}
-          latitude={spot.latitude}
-          longitude={spot.longitude}
+          key={spot.Id}
+          latitude={spot.Latitude}
+          longitude={spot.Longitude}
         >
           <button
             onClick={(e) => {

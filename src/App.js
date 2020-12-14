@@ -23,8 +23,8 @@ function App() {
             <SpotsList />
           </Route>
           {spots.map((spot) => (
-            <Route exact path={`/spot/${spot.id}`} key={spot.id}>
-              <SpotScreen id={spot.id} />
+            <Route exact path={`/spot/${spot.Id}`} key={spot.Id}>
+              <SpotScreen id={spot.Id} />
             </Route>
           ))}
         </Switch>

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 const Spot = ({ id }) => {
   const spotsList = useSelector((state) => state.spots.spotsList);
-  const spot = spotsList.filter((spot) => spot.id === id)[0];
+  const spot = spotsList.filter((spot) => spot.Id === id)[0];
 
   return (
     <div
@@ -12,9 +12,9 @@ const Spot = ({ id }) => {
         textAlign: "center",
       }}
     >
-      <h2 style={{ fontSize: "2rem", padding: "30px" }}>{spot.name}</h2>
+      <h2 style={{ fontSize: "2rem", padding: "30px" }}>{spot.Name}</h2>
       <div style={{ fontSize: "1.1rem" }}>
-        <p>{spot.description}</p>
+        <p>{spot.Description}</p>
         <p>Tags: {spot.tags.join(", ")}</p>
       </div>
     </div>

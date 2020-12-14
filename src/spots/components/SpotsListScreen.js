@@ -7,13 +7,13 @@ const SpotsList = ({ spotsList }) => {
     <div style={{width: "100%", position: "absolute",top: "80px"}}>
       {spots.map((spot) => (
         <div>
-          <Link key={spot.id} to={`/spot/${spot.id}`}>
+          <Link key={spot.Id} to={`/spot/${spot.Id}`}>
             <button
               style={{width: "100%", marginTop: ".5em"}}
               className="btn btn-lg btn-primary"
-              key={spot.id}
+              key={spot.Id}
             >
-              {spot.name}
+              {spot.Name}
             </button>
           </Link>
         </div>

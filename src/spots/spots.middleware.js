@@ -46,7 +46,7 @@ const spotsMiddleware = ({ dispatch }) => (next) => (action) => {
           dispatch(actions.spots.getSpotsResponse(spotsList));
         })
         .catch((error) => {
-          console.log("DEBUG");
+          console.log(error);
           dispatch(actions.spots.getSpotsError(error));
         });
       break;
