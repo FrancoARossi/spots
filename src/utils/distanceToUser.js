@@ -1,10 +1,10 @@
 export const distanceToUser = ({ spot, userPosition }) => {
   const R = 6371;
   const omega1 = (userPosition.latitude * Math.PI) / 180;
-  const omega2 = (spot.latitude * Math.PI) / 180;
-  const deltaOmega = ((spot.latitude - userPosition.latitude) * Math.PI) / 180;
+  const omega2 = (spot.Latitude * Math.PI) / 180;
+  const deltaOmega = ((spot.Latitude - userPosition.latitude) * Math.PI) / 180;
   const deltaLambda =
-    ((spot.longitude - userPosition.longitude) * Math.PI) / 180;
+    ((spot.Longitude - userPosition.longitude) * Math.PI) / 180;
 
   const a =
     Math.sin(deltaOmega / 2) * Math.sin(deltaOmega / 2) +

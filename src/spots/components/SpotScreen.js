@@ -15,7 +15,7 @@ const Spot = ({ id }) => {
       <h2 style={{ fontSize: "2rem", padding: "30px" }}>{spot.Name}</h2>
       <div style={{ fontSize: "1.1rem" }}>
         <p>{spot.Description}</p>
-        <p>Tags: {spot.tags.join(", ")}</p>
+        <p>Tags: {spot.Tags.join(", ")}</p>
       </div>
     </div>
   );

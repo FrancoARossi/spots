@@ -46,8 +46,8 @@ const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
       ;
       {selectedSpot ? (
         <Popup
-          latitude={selectedSpot.latitude}
-          longitude={selectedSpot.longitude}
+          latitude={selectedSpot.Latitude}
+          longitude={selectedSpot.Longitude}
           onClose={() => {
             setSelectedSpot(null);
           }}
@@ -59,14 +59,14 @@ const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
               fontWeight: "lighter",
             }}
           >
-            <h1>{selectedSpot.name}</h1>
+            <h1>{selectedSpot.Name}</h1>
             <div
               style={{
                 fontSize: ".7em",
               }}
             >
-              <p>{selectedSpot.description}</p>
-              <p>Tags: {selectedSpot.tags.join(", ")}</p>
+              <p>{selectedSpot.Description}</p>
+              <p>Tags: {selectedSpot.Tags.join(", ")}</p>
             </div>
           </div>
         </Popup>

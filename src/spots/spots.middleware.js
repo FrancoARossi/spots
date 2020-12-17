@@ -29,7 +29,6 @@ const spotsMiddleware = ({ dispatch }) => (next) => (action) => {
         .getSpots()
         .then((response) => {
           var spotsList = [];
-          console.log(response);
           if (action.payload.tagsList) {
             spotsList = response.filter((spot) =>
               filterSpotByTags(spot, action.payload.tagsList)
