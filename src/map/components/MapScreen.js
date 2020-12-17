@@ -50,7 +50,7 @@ const Map = ({ viewport, updateViewport, updateUserPosition }) => {
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/francoarossi/ckhe0w2rt08ff19nyff5iii23"
       onViewportChange={onViewportChange}
-      style={{ position: "absolute" }}
+      style={{ position: "fixed" }}
       maxZoom={18}
     >
       <Geolocator />

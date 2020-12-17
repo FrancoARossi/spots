@@ -33,12 +33,12 @@ const Tags = ({
   return (
     <div
       style={{
-        position: "fixed",
+        position: "relative",
         width: "100%",
         display: "flex",
         justifyContent: "space-around",
         padding: "1em",
-        zIndex: "10",
+        zIndex: 10,
       }}
     >
       <button

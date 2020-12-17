@@ -1,15 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Marker, Popup } from "react-map-gl";
+//import { useHistory } from "react-router-dom";
 
-const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
-  const [selectedSpot, setSelectedSpot] = useState(null);
-
+const SpotsMarkers = ({
+  spotsList,
+  status,
+  selectedSpot,
+  userPosition,
+  getSpotsRequest,
+  setSelectedSpot,
+}) => {
   useEffect(() => {
     if (status === "idle") {
       getSpotsRequest(userPosition, []);
     }
     // eslint-disable-next-line
   }, []);
+
+  //const history = useHistory();
 
   return (
     <div>
@@ -50,6 +58,11 @@ const SpotsMarkers = ({ spotsList, status, userPosition, getSpotsRequest }) => {
           longitude={selectedSpot.Longitude}
           onClose={() => {
             setSelectedSpot(null);
+          }}
+          onClick={() => {
+            //console.log(history);
+            setSelectedSpot(selectedSpot);
+            //history.push(`/spot/${selectedSpot.Id}`);
           }}
         >
           <div

@@ -7,6 +7,7 @@ import Tags from "./tags/containers/Tags";
 import SpotsList from "./spots/containers/SpotsList";
 import { useSelector } from "react-redux";
 import SpotScreen from "./spots/components/SpotScreen";
+import SearchBar from "./searchBar/containers/SearchBar";
 
 function App() {
   const spots = useSelector((state) => state.spots.spotsList);
@@ -14,10 +15,13 @@ function App() {
   return (
     <div>
       <Router>
-        <Tags />
         <Switch>
           <Route exact path="/">
             <Map />
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <SearchBar />
+              <Tags />
+            </div>
           </Route>
           <Route exact path="/spotList">
             <SpotsList />

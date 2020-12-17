@@ -9,7 +9,7 @@ const Geolocator = ({ updateUserPosition }) => {
   };
 
   const geolocateStyle = {
-    position: "absolute",
+    position: "fixed",
     bottom: 85,
     right: 15,
   };

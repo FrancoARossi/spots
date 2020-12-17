@@ -2,12 +2,14 @@ import {
   GET_SPOTS_REQUEST,
   GET_SPOTS_RESPONSE,
   GET_SPOTS_ERROR,
+  SET_SELECTED_SPOT,
 } from "./spots.actions";
 
 const initialState = {
   spotsList: [],
   status: "idle",
   error: null,
+  selectedSpot: null,
 };
 
 const spotsReducers = (state = initialState, action) => {
@@ -18,6 +20,8 @@ const spotsReducers = (state = initialState, action) => {
       return { ...state, spotsList: action.payload, status: "idle" };
     case GET_SPOTS_ERROR:
       return { ...state, status: "error", error: action.payload };
+    case SET_SELECTED_SPOT:
+      return { ...state, selectedSpot: action.payload };
     default:
       return state;
   }
