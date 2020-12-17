@@ -17,6 +17,14 @@
       "Tags": ["urbano"]
     },
     {
+      "Id": 8,
+      "Name": "Golf Club",
+      "Description": "El campito de golf de CSSerra",
+      "Latitude": -34.30871834575668,
+      "Longitude": -59.00856820855622,
+      "Tags": ["parque", "naturaleza"]
+    },
+    {
       "Id": 3,
       "Name": "Estacion San Antonio de Areco",
       "Description": "Antigua estacion de trenes",
@@ -38,7 +46,23 @@
       "Description": "Plaza principal de San Antonio de Areco",
       "Latitude": -34.243661,
       "Longitude": -59.47358,
-      "Tags": ["parque"]
+      "Tags": ["parque", "naturaleza"]
+    },
+    {
+      "Id": 6,
+      "Name": "Plaza Gomez",
+      "Description": "Plaza Gomez de San Antonio de Areco",
+      "Latitude": -34.24706383584215,
+      "Longitude": -59.4699914502007,
+      "Tags": ["parque", "naturaleza"]
+    },
+    {
+      "Id": 7,
+      "Name": "Río Areco",
+      "Description": "Costanera de la ciudad de San Antonio de Areco",
+      "Latitude": -34.240063191712146,
+      "Longitude": -59.474970374237586,
+      "Tags": ["parque", "naturaleza"]
     }
   ]
 }
