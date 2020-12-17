@@ -18,7 +18,7 @@ const sortSpotsByDistanceToUser = (spotsList, userPosition) => {
 };
 
 const filterSpotByTags = (spot, tagsList) => {
-  return tagsList.every((tag) => spot.tags.includes(tag));
+  return tagsList.every((tag) => spot.Tags.includes(tag));
 };
 
 const spotsMiddleware = ({ dispatch }) => (next) => (action) => {
@@ -29,6 +29,7 @@ const spotsMiddleware = ({ dispatch }) => (next) => (action) => {
         .getSpots()
         .then((response) => {
           var spotsList = [];
+          console.log(response);
           if (action.payload.tagsList) {
             spotsList = response.filter((spot) =>
               filterSpotByTags(spot, action.payload.tagsList)
