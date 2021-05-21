@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../logo.png";
+import logo from "../assets/logo.png";
 import SpotsList from "../spots/containers/SpotsList";
 
 export default function Logo() {

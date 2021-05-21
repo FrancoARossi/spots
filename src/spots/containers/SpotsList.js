@@ -5,6 +5,6 @@ const mapStateToProps = (state) => ({
     spotsList: state.spots.spotsList,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpotsListScreen);

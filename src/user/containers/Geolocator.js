@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import GeolocationController from "../components/GeolocationController/GeolocationController";
 import actions from "../user.actions";
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
     updateUserPosition: (newPosition) => {
