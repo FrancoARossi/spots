@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import MapScreen from "../components/MapScreen/MapScreen";
-import index from "../../actions";
+import index from "../../actions/actions";
 
 const mapStateToProps = (state) => ({
     viewport: {...state.map},

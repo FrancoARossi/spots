@@ -61,7 +61,6 @@ const spotsReducer = (state = initialState, action) => {
         case GET_SPOTS_ERROR:
             return {
                 ...state,
-                spotsList: action.res,
                 ui: {
                     ...state.ui,
                     pending: {

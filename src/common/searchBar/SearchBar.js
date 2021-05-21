@@ -2,11 +2,11 @@ import "./SearchBar.scss"
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import actions from "../../actions";
+import actions from "../../actions/actions";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-const SearchBar = ({spots, updateViewport, setSelectedSpot}) => {
+const SearchBar = ({spotsList, updateViewport, setSelectedSpot}) => {
     const onChange = (e, spot) => {
         e.preventDefault();
         setSelectedSpot(spot);
@@ -21,7 +21,7 @@ const SearchBar = ({spots, updateViewport, setSelectedSpot}) => {
         <Autocomplete
             className={"search-bar"}
             id="combo-box-demo"
-            options={spots}
+            options={spotsList}
             autoHighlight={true}
             clearOnEscape={true}
             getOptionLabel={(spot) => spot.name}
@@ -39,13 +39,13 @@ const SearchBar = ({spots, updateViewport, setSelectedSpot}) => {
 }
 
 SearchBar.propTypes = {
-    spots: PropTypes.array,
+    spotsList: PropTypes.array,
     updateViewport: PropTypes.func,
     setSelectedSpot: PropTypes.func,
 }
 
 const mapStateToProps = (state) => ({
-    spots: state.spots.spotsList
+    spotsList: state.spots.spotsList,
 })
 
 const mapDispatchToProps = (dispatch) => ({

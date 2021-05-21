@@ -1,5 +1,5 @@
 import {configureStore} from "@reduxjs/toolkit";
-import index from "./reducers";
+import index from "./reducers/reducers";
 import spotsMiddleware from "./spots/spots.middleware";
 
 export default configureStore({

@@ -2,7 +2,7 @@ import "./SpotsMarkers.scss"
 import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import actions from "../../actions";
+import actions from "../../actions/actions";
 import {Marker, Popup} from "react-map-gl";
 
 const SpotsMarkers = ({

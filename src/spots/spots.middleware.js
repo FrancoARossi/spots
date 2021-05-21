@@ -1,4 +1,4 @@
-import actions from "../actions";
+import actions from "../actions/actions";
 import {services} from "./spots.services";
 import {GET_SPOTS_REQUEST} from "./spots.actions";
 import {sortSpotsByDistanceToUser} from "../utils/sortSpotsByDistanceToUser";

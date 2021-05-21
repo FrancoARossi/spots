@@ -4,11 +4,11 @@ import userReducer from "../user/user.reducer";
 import spotsReducer from "../spots/spots.reducer";
 import tagsReducer from "../tags/tags.reducer";
 
-const index = combineReducers({
+const reducers = combineReducers({
     map: mapReducer,
     user: userReducer,
     spots: spotsReducer,
     tags: tagsReducer,
 });
 
-export default index;
+export default reducers;
