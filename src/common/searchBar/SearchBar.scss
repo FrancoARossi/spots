@@ -1,0 +1,11 @@
+@import "../../styles";
+
+.search-bar {
+  position: relative;
+  margin-top: 10px;
+  z-index: 20;
+}
+
+.search-bar-input {
+  background-color: $white;
+}

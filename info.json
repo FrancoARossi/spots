@@ -1,68 +1,68 @@
 {
   "spots": [
     {
-      "Id": 1,
-      "Name": "Country Club Los Cardales",
-      "Description": "Club de campo",
-      "Latitude": -34.3129451,
-      "Longitude": -58.9602354,
-      "Tags": ["parque", "naturaleza"]
+      "id": 1,
+      "name": "Country Club Los Cardales",
+      "description": "Club de campo",
+      "latitude": -34.3129451,
+      "longitude": -58.9602354,
+      "tags": ["parque", "naturaleza"]
     },
     {
-      "Id": 2,
-      "Name": "Barrio Las Lomadas",
-      "Description": "Residencial",
-      "Latitude": -34.3198012,
-      "Longitude": -58.9518397,
-      "Tags": ["urbano"]
+      "id": 2,
+      "name": "Barrio Las Lomadas",
+      "description": "Residencial",
+      "latitude": -34.3198012,
+      "longitude": -58.9518397,
+      "tags": ["urbano"]
     },
     {
-      "Id": 8,
-      "Name": "Golf Club",
-      "Description": "El campito de golf de CSSerra",
-      "Latitude": -34.30871834575668,
-      "Longitude": -59.00856820855622,
-      "Tags": ["parque", "naturaleza"]
+      "id": 8,
+      "name": "Golf Club",
+      "description": "El campito de golf de CSSerra",
+      "latitude": -34.30871834575668,
+      "longitude": -59.00856820855622,
+      "tags": ["parque", "naturaleza"]
     },
     {
-      "Id": 3,
-      "Name": "Estacion San Antonio de Areco",
-      "Description": "Antigua estacion de trenes",
-      "Latitude": -34.258162,
-      "Longitude": -59.480152,
-      "Tags": ["urbano", "interior"]
+      "id": 3,
+      "name": "Estacion San Antonio de Areco",
+      "description": "Antigua estacion de trenes",
+      "latitude": -34.258162,
+      "longitude": -59.480152,
+      "tags": ["urbano", "interior"]
     },
     {
-      "Id": 4,
-      "Name": "A la vuelta",
-      "Description": "A la vuelta de mi casa :)",
-      "Latitude": -34.258907,
-      "Longitude": -59.473733,
-      "Tags": ["naturaleza", "urbano"]
+      "id": 4,
+      "name": "A la vuelta",
+      "description": "A la vuelta de mi casa :)",
+      "latitude": -34.258907,
+      "longitude": -59.473733,
+      "tags": ["naturaleza", "urbano"]
     },
     {
-      "Id": 5,
-      "Name": "Plaza Principal",
-      "Description": "Plaza principal de San Antonio de Areco",
-      "Latitude": -34.243661,
-      "Longitude": -59.47358,
-      "Tags": ["parque", "naturaleza"]
+      "id": 5,
+      "name": "Plaza Principal",
+      "description": "Plaza principal de San Antonio de Areco",
+      "latitude": -34.243661,
+      "longitude": -59.47358,
+      "tags": ["parque", "naturaleza"]
     },
     {
-      "Id": 6,
-      "Name": "Plaza Gomez",
-      "Description": "Plaza Gomez de San Antonio de Areco",
-      "Latitude": -34.24706383584215,
-      "Longitude": -59.4699914502007,
-      "Tags": ["parque", "naturaleza"]
+      "id": 6,
+      "name": "Plaza Gomez",
+      "description": "Plaza Gomez de San Antonio de Areco",
+      "latitude": -34.24706383584215,
+      "longitude": -59.4699914502007,
+      "tags": ["parque", "naturaleza"]
     },
     {
-      "Id": 7,
-      "Name": "Río Areco",
-      "Description": "Costanera de la ciudad de San Antonio de Areco",
-      "Latitude": -34.240063191712146,
-      "Longitude": -59.474970374237586,
-      "Tags": ["parque", "naturaleza"]
+      "id": 7,
+      "name": "Río Areco",
+      "description": "Costanera de la ciudad de San Antonio de Areco",
+      "latitude": -34.240063191712146,
+      "longitude": -59.474970374237586,
+      "tags": ["parque", "naturaleza"]
     }
   ]
 }

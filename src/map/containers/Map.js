@@ -1,16 +1,16 @@
-import { connect } from "react-redux";
-import MapScreen from "../components/MapScreen";
-import rootAction from "../../actions/rootAction";
+import {connect} from "react-redux";
+import MapScreen from "../components/MapScreen/MapScreen";
+import index from "../../actions";
 
 const mapStateToProps = (state) => ({
-  viewport: { ...state.map },
+    viewport: {...state.map},
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateViewport: (newViewport) =>
-    dispatch(rootAction.map.updateViewport(newViewport)),
-  updateUserPosition: (newPosition) =>
-    dispatch(rootAction.user.updateUserPosition(newPosition)),
+    updateViewport: (newViewport) =>
+        dispatch(index.map.updateViewport(newViewport)),
+    updateUserPosition: (newPosition) =>
+        dispatch(index.user.updateUserPosition(newPosition)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);

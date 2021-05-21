@@ -1,0 +1,12 @@
+@import "../../../styles";
+
+.spots-list-container {
+  width: 100%;
+  position: absolute;
+  top: 80px;
+
+  .spot-button {
+    width: 100%;
+    margin-top: .5em;
+  }
+}

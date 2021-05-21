@@ -1,0 +1,16 @@
+@import "../../../styles";
+
+.spot-container {
+  position: relative;
+  top: 80px;
+  text-align: center;
+
+  .title {
+    font-size: 2rem;
+    padding: 30px;
+  }
+
+  .content {
+    font-size: 1.1rem;
+  }
+}

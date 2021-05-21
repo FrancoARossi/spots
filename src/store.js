@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducers/rootReducer";
+import {configureStore} from "@reduxjs/toolkit";
+import index from "./reducers";
 import spotsMiddleware from "./spots/spots.middleware";
 
 export default configureStore({
-  reducer: rootReducer,
-  middleware: [spotsMiddleware],
+    reducer: index,
+    middleware: [spotsMiddleware],
 });

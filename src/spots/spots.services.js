@@ -1,11 +1,6 @@
-import { get, post } from "../utils/http";
-import api from "../api.json";
+import {get, post} from "../utils/http";
 
 export const services = {
-  getSpots: () => {
-    return get(api.url);
-  },
-  postSpot: (spot) => {
-    return post(api.url, spot);
-  },
+    getSpots: () => get("spots"),
+    postSpot: (spot) => post("spots", spot),
 };
