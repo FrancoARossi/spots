@@ -13,9 +13,9 @@ const mapReducer = (state = initialState, action) => {
         case UPDATE_VIEWPORT: {
             return {
                 ...state,
-                latitude: action.payload.latitude,
-                longitude: action.payload.longitude,
-                zoom: action.payload.zoom,
+                latitude: action.newViewport.latitude,
+                longitude: action.newViewport.longitude,
+                zoom: action.newViewport.zoom,
             };
         }
         default:

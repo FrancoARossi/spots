@@ -7,12 +7,20 @@ const initialState = {
 const tagsReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_FILTER_TAGS:
-            const i = state.tagsList.indexOf(action.payload);
-            if (i === -1) {
-                return { ...state, tagsList: [...state.tagsList, action.payload] };
+            if (state.tagsList.includes(action.tag)) {
+                let indexOfTag = state.tagsList.indexOf(action.tag);
+                let newTagsList = [...state.tagsList];
+                newTagsList.splice(indexOfTag, 1);
+
+                return {
+                    ...state,
+                    tagsList: newTagsList
+                };
             } else {
-                state.tagsList.splice(i, 1); //TODO: Maybe find another way to do this without mutating the state
-                return {...state};
+                return {
+                    ...state,
+                    tagsList: [...state.tagsList, action.tag]
+                };
             }
         default:
             return state;

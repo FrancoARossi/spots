@@ -1,0 +1,12 @@
+@import "../../styles";
+
+.navbar-container {
+  display: flex;
+  position: fixed;
+  background: $white;
+  bottom: 0;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 1em;
+  z-index: 10;
+}
