@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import actions from "../../actions/actions";
 import {Marker, Popup} from "react-map-gl";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
 
 const SpotsMarkers = ({
                           spotsList,
@@ -25,30 +27,7 @@ const SpotsMarkers = ({
                     latitude={spot.latitude}
                     longitude={spot.longitude}
                 >
-                    {/*TODO: usar button de material ui y react font awesome para el icono*/}
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setSelectedSpot(spot);
-                        }}
-                        className="btn btn-sm"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="30"
-                            height="30"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="#8300ff"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <path
-                                d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                    </button>
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className={"marker-icon"} onClick={() => setSelectedSpot(spot)}/>
                 </Marker>
             ))}
             {selectedSpot ? (
