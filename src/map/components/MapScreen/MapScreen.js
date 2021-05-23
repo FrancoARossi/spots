@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import "./MapScreen.scss";
 import PropTypes from "prop-types"
 import MapGL from "react-map-gl";
-import Geolocator from "../../../user/containers/Geolocator";
+import Geolocator from "../../containers/Geolocator";
 import SpotsMarkers from "../../../common/SpotsMarkers/SpotsMarkers";
 import SearchBar from "../../../common/SearchBar/SearchBar";
 import Tags from "../../../tags/containers/Tags";

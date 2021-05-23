@@ -1,11 +1,17 @@
-import {UPDATE_VIEWPORT} from "./map.actions";
+import {UPDATE_VIEWPORT, UPDATE_USER_POSITION} from "./map.actions";
 
 const initialState = {
-    latitude: 37.7577,
-    longitude: -122.4376,
-    width: "100vw",
-    height: "100vh",
-    zoom: 15,
+    viewport: {
+        latitude: 37.7577,
+        longitude: -122.4376,
+        zoom: 15,
+        width: "100%",
+        height: "100%",
+    },
+    userPosition: {
+        latitude: 37.7577,
+        longitude: -122.4376,
+    }
 };
 
 const mapReducer = (state = initialState, action) => {
@@ -13,9 +19,21 @@ const mapReducer = (state = initialState, action) => {
         case UPDATE_VIEWPORT: {
             return {
                 ...state,
-                latitude: action.newViewport.latitude,
-                longitude: action.newViewport.longitude,
-                zoom: action.newViewport.zoom,
+                viewport: {
+                    ...state.viewport,
+                    latitude: action.newViewport.latitude,
+                    longitude: action.newViewport.longitude,
+                    zoom: action.newViewport.zoom,
+                }
+            };
+        }
+        case UPDATE_USER_POSITION: {
+            return {
+                ...state,
+                userPosition: {
+                    latitude: action.latitude,
+                    longitude: action.longitude,
+                }
             };
         }
         default:

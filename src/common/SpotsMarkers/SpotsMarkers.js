@@ -85,7 +85,7 @@ SpotsMarkers.propTypes = {
 const mapStateToProps = (state) => ({
     spotsList: state.spots.spotsList,
     selectedSpot: state.spots.selectedSpot,
-    userPosition: state.user.position,
+    userPosition: state.map.userPosition,
 });
 
 const mapDispatchToProps = (dispatch) => ({

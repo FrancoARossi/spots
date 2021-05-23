@@ -3,7 +3,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const SpotsListScreen = ({spotsList}) => {
-    console.log(spotsList);
     return (
         <div className={"spots-list-container"}>
             {spotsList.map((spot) => (

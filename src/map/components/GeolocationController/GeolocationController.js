@@ -23,7 +23,7 @@ const GeolocationController = ({updateUserPosition}) => {
             onGeolocate={geolocate}
             positionOptions={positionOptions}
             trackUserLocation={true}
-            label="Center"
+            label={"Center"}
             auto={true}
         />
     );

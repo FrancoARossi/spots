@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import GeolocationController from "../components/GeolocationController/GeolocationController";
-import actions from "../user.actions";
+import actions from "../../map/map.actions";
 
 const mapStateToProps = () => ({});
 
