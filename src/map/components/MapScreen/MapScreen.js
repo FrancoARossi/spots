@@ -57,10 +57,10 @@ const MapScreen = ({viewport, updateViewport, updateUserPosition}) => {
                 onViewportChange={onViewportChange}
                 maxZoom={18}
             >
-                <Geolocator/>
-                <SpotsMarkers/>
                 <SearchBar/>
                 <Tags/>
+                <SpotsMarkers/>
+                <Geolocator/>
             </MapGL>
         </div>
     );

@@ -1,5 +1,4 @@
 import {
-    CLEAR_SPOTS_ERROR,
     GET_SPOTS_REQUEST,
     GET_SPOTS_RESPONSE,
     GET_SPOTS_ERROR,
@@ -21,16 +20,6 @@ const initialState = {
 
 const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CLEAR_SPOTS_ERROR:
-            return {
-                ...state,
-                ui: {
-                    ...state.ui,
-                    error: {
-                        getSpotsError: false,
-                    }
-                }
-            }
         case GET_SPOTS_REQUEST:
             return {
                 ...state,
