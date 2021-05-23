@@ -1,8 +1,11 @@
 import React, {useEffect} from "react";
+import "./MapScreen.scss";
 import PropTypes from "prop-types"
-import ReactMapGL from "react-map-gl";
+import MapGL from "react-map-gl";
 import Geolocator from "../../../user/containers/Geolocator";
 import SpotsMarkers from "../../../common/SpotsMarkers/SpotsMarkers";
+import SearchBar from "../../../common/SearchBar/SearchBar";
+import Tags from "../../../tags/containers/Tags";
 
 const MapScreen = ({viewport, updateViewport, updateUserPosition}) => {
     const onViewportChange = (newViewport) => {
@@ -46,17 +49,20 @@ const MapScreen = ({viewport, updateViewport, updateUserPosition}) => {
     }, []);
 
     return (
-        <ReactMapGL
-            {...viewport}
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            mapStyle="mapbox://styles/francoarossi/ckhe0w2rt08ff19nyff5iii23"
-            onViewportChange={onViewportChange}
-            maxZoom={18}
-            style={{position: "fixed"}}
-        >
-            <Geolocator/>
-            <SpotsMarkers/>
-        </ReactMapGL>
+        <div className={"map-container"}>
+            <MapGL
+                {...viewport}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                mapStyle={"mapbox://styles/francoarossi/ckhe0w2rt08ff19nyff5iii23"}
+                onViewportChange={onViewportChange}
+                maxZoom={18}
+            >
+                <Geolocator/>
+                <SpotsMarkers/>
+                <SearchBar/>
+                <Tags/>
+            </MapGL>
+        </div>
     );
 };
 
