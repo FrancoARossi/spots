@@ -1,18 +1,19 @@
 import "./SpotsListScreen.scss";
 import React from "react";
 import PropTypes from "prop-types";
+import {Button} from "@material-ui/core";
 
 const SpotsListScreen = ({spotsList}) => {
     return (
         <div className={"spots-list-container"}>
             {spotsList.map((spot) => (
-                <div key={spot.id}>
-                    <button
-                        className={"btn btn-lg btn-primary spot-button"}
-                    >
+                    <Button
+                        key={spot.id}
+                        variant="outlined"
+                        color="primary"
+                        className={"spot-button"}>
                         {spot.name}
-                    </button>
-                </div>
+                    </Button>
             ))}
         </div>
     );

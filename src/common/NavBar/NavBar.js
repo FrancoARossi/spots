@@ -3,6 +3,7 @@ import "./NavBar.scss";
 import {FaMapMarkedAlt} from "react-icons/fa";
 import {FaListUl} from "react-icons/fa";
 import {useHistory} from "react-router-dom";
+import { Button } from '@material-ui/core';
 
 export default function NavBar() {
     const history = useHistory();
@@ -12,12 +13,12 @@ export default function NavBar() {
 
     return (
         <div className={"navbar-container"}>
-            <button className="btn btn-lg btn-primary" onClick={redirectToMap}>
+            <Button color="primary" className="icon" onClick={redirectToMap}>
                 <FaMapMarkedAlt/>
-            </button>
-            <button className="btn btn-lg btn-primary" onClick={redirectToSpotsList}>
+            </Button>
+            <Button color="primary" className="icon" onClick={redirectToSpotsList}>
                 <FaListUl/>
-            </button>
+            </Button>
         </div>
     );
 }

@@ -26,15 +26,15 @@ const SearchBar = ({spotsList, updateViewport, setSelectedSpot}) => {
             clearOnEscape={true}
             getOptionLabel={(spot) => spot.name}
             onChange={(e, spot) => onChange(e, spot)}
+            noOptionsText={"Ningún spot coincide con su búsqueda"}
             renderInput={(params) => (
                 <TextField
-                    {...params}
-                    className={"search-bar-input"}
-                    label="Search Spots..."
-                    variant="outlined"
+                {...params}
+                className={"search-bar-input"}
+                label="Buscar Spots..."
+                variant="outlined"
                 />
-            )}
-        />
+            )}/>
     );
 }
 
@@ -43,6 +43,7 @@ SearchBar.propTypes = {
     updateViewport: PropTypes.func,
     setSelectedSpot: PropTypes.func,
 }
+
 
 const mapStateToProps = (state) => ({
     spotsList: state.spots.spotsList,

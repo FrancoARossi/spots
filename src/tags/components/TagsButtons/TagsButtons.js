@@ -1,4 +1,5 @@
 import "./TagsButtons.scss"
+import { Button } from '@material-ui/core';
 import React, {useState} from "react";
 import PropTypes from "prop-types";
 
@@ -34,30 +35,38 @@ const TagsButtons = ({
 
     return (
         <div className={"tags-container"}>
-            <button
+            <Button
+                variant="contained"
+                color="primary"
                 className={buttonsState["parque"]}
                 onClick={() => onClickHandle("parque")}
             >
                 Parque
-            </button>
-            <button
+            </Button>
+            <Button
+                variant="contained"
+                color="primary"
                 className={buttonsState["urbano"]}
                 onClick={() => onClickHandle("urbano")}
             >
                 Urbano
-            </button>
-            <button
+            </Button>
+            <Button
+                variant="contained"
+                color="primary"
                 className={buttonsState["interior"]}
                 onClick={() => onClickHandle("interior")}
             >
                 Interior
-            </button>
-            <button
+            </Button>
+            <Button
+                variant="contained"
+                color="primary"
                 className={buttonsState["naturaleza"]}
                 onClick={() => onClickHandle("naturaleza")}
             >
                 Naturaleza
-            </button>
+            </Button>
         </div>
     );
 };

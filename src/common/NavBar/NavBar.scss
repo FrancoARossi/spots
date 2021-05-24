@@ -4,8 +4,13 @@
   display: flex;
   position: fixed;
   background: $white;
+  left: 0;
   bottom: 0;
   width: 100%;
   justify-content: space-evenly;
   padding: 1em;
+}
+
+.icon {
+  font-size: 40px;
 }

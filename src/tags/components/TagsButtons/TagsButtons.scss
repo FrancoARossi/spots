@@ -1,6 +1,13 @@
+@import "../../../styles/index";
 
 .tags-container {
   display: flex;
   justify-content: space-around;
   padding-top: 20px;
+}
+
+.icon {
+  &.MuiButton-root{
+    font-size: 1.5em;
+  }
 }
