@@ -12,7 +12,7 @@ const SpotsListScreen = ({spotsList}) => {
                         variant="outlined"
                         color="primary"
                         className={"spot-button"}>
-                        {spot.name}
+                        {`${spot.name} - ${spot.description}`}
                     </Button>
             ))}
         </div>

@@ -6,6 +6,7 @@ import Geolocator from "../../containers/Geolocator";
 import SpotsMarkers from "../../../common/SpotsMarkers/SpotsMarkers";
 import SearchBar from "../../../common/SearchBar/SearchBar";
 import Tags from "../../../tags/containers/Tags";
+import AddSpotButton from "../../../common/AddSpotButton/AddSpotButton";
 
 const MapScreen = ({viewport, updateViewport, updateUserPosition, setSelectedSpot}) => {
     const onViewportChange = (newViewport) => {
@@ -61,7 +62,8 @@ const MapScreen = ({viewport, updateViewport, updateUserPosition, setSelectedSpo
                 mapStyle={"mapbox://styles/francoarossi/ckhe0w2rt08ff19nyff5iii23"}
                 onViewportChange={onViewportChange}
                 maxZoom={18}
-            >
+                >
+                <AddSpotButton/> 
                 <SearchBar/>
                 <Tags/>
                 <SpotsMarkers/>
