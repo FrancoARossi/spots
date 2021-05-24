@@ -11,6 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(actions.map.updateViewport(newViewport)),
     updateUserPosition: (newPosition) =>
         dispatch(actions.map.updateUserPosition(newPosition)),
+    setSelectedSpot: (spot) => dispatch(actions.spots.setSelectedSpot(spot)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);

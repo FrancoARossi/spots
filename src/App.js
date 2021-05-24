@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/main.scss"
 import Map from "./map/containers/Map";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import NavBar from "./common/NavBar/NavBar";

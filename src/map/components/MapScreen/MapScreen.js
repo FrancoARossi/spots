@@ -7,7 +7,7 @@ import SpotsMarkers from "../../../common/SpotsMarkers/SpotsMarkers";
 import SearchBar from "../../../common/SearchBar/SearchBar";
 import Tags from "../../../tags/containers/Tags";
 
-const MapScreen = ({viewport, updateViewport, updateUserPosition}) => {
+const MapScreen = ({viewport, updateViewport, updateUserPosition, setSelectedSpot}) => {
     const onViewportChange = (newViewport) => {
         updateViewport({
             latitude: newViewport.latitude,
@@ -48,6 +48,11 @@ const MapScreen = ({viewport, updateViewport, updateUserPosition}) => {
         // eslint-disable-next-line
     }, []);
 
+    useEffect(() => {
+        setSelectedSpot(null)
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <div className={"map-container"}>
             <MapGL
@@ -69,7 +74,8 @@ const MapScreen = ({viewport, updateViewport, updateUserPosition}) => {
 MapScreen.propTypes = {
     viewport: PropTypes.object,
     updateViewport: PropTypes.func,
-    updateUserPosition: PropTypes.func
+    updateUserPosition: PropTypes.func,
+    setSelectedSpot: PropTypes.func,
 }
 
 export default MapScreen;

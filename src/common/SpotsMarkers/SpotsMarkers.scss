@@ -1,15 +1,30 @@
-@import "../../styles";
+@import "../../styles/styles";
 
 .marker-icon {
-  font-size: 26px;
+  font-size: $marker-size;
 }
 
-.popup-container {
-  padding: .25em;
-  font-size: 1.5em;
-  font-weight: lighter;
+.popup-content {
+  max-height: 300px;
+  .spot-name {
+    font-size: 34px;
+    font-weight: bold;
+    color: $blue-link;
 
-  .popup-description {
-    font-size: .7em;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  .spot-description {
+    max-width: 200px;
+    padding-top: 10px;
+    font-size: 18px;
+  }
+
+  .spot-images {
+    display: flex;
+    justify-content: center;
   }
 }

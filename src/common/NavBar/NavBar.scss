@@ -1,4 +1,4 @@
-@import "../../styles";
+@import "../../styles/styles";
 
 .navbar-container {
   display: flex;
@@ -8,5 +8,4 @@
   width: 100%;
   justify-content: space-evenly;
   padding: 1em;
-  z-index: 10;
 }
