@@ -7,9 +7,12 @@ import SpotsList from "./spots/containers/SpotsList";
 import SpotDetails from "./spots/containers/SpotDetails";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App({spotsList}) {
     return (
+        <>
+        <CssBaseline/>
         <Router>
             {spotsList.map(spot => (<Link key={spot.id} to={"/spot/" + spot.id}/>))}
             <Switch>
@@ -19,6 +22,7 @@ function App({spotsList}) {
             </Switch>
             <NavBar/>
         </Router>
+        </>
     );
 }
 

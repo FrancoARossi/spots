@@ -2,15 +2,24 @@
 
 .spot-container {
   position: relative;
-  top: 80px;
   text-align: center;
 
   .title {
-    font-size: 2rem;
-    padding: 30px;
+    font-size: 1.75rem;
+    padding: .4em;
   }
-
   .content {
-    font-size: 1.1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1rem;
+    color: $gray;
   }
+  .tag-btn{
+    margin-right: 1em;
+    pointer-events: none;
+  }
+}
+
+.carousel-img {
+  margin-top: 1em;
 }
