@@ -8,6 +8,7 @@ import SpotDetails from "./spots/containers/SpotDetails";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import CssBaseline from '@material-ui/core/CssBaseline';
+import AddSpotScreen from "./spots/components/AddSpotScreen/AddSpotScreen";
 
 function App({spotsList}) {
     return (
@@ -19,6 +20,7 @@ function App({spotsList}) {
                 <Route exact path="/" component={Map}/>
                 <Route path={"/spots-list"} component={SpotsList}/>
                 <Route path={"/spot/:id"} component={SpotDetails}/>
+                <Route path="/add-spot" component={AddSpotScreen}/>
             </Switch>
             <NavBar/>
         </Router>
