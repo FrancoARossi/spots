@@ -1,6 +1,6 @@
 import "./TagsButtons.scss"
-import { Button } from '@material-ui/core';
-import React, {useEffect, useState} from "react";
+import {Button} from '@material-ui/core';
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 
 const TagsButtons = ({
@@ -8,13 +8,9 @@ const TagsButtons = ({
                          userPosition,
                          getSpotsRequest,
                          updateFilterTags,
+                         onClick,
+                         className
                      }) => {
-    const [buttonsState, setButtonsState] = useState({
-        parque: false,
-        urbano: false,
-        interior: false,
-        naturaleza: false,
-    });
 
     useEffect(() => {
         getSpotsRequest(userPosition, tagsList);
@@ -22,41 +18,36 @@ const TagsButtons = ({
     }, [tagsList]);
 
     const onClickHandle = (tag) => {
-        setButtonsState({...buttonsState, [tag]: !buttonsState[tag]})
         updateFilterTags(tag);
     };
 
     return (
-        <div className={"tags-container"}>
+        <div className={`tags-container ${className ? className : ""}`}>
             <Button
-                variant="contained"
+                variant={tagsList.includes("parque") ? "contained" : "outlined"}
                 color="primary"
-                className={`${buttonsState["parque"] ? "tag-toggled" : ""}`}
-                onClick={() => onClickHandle("parque")}
+                onClick={onClick ?? (() => onClickHandle("parque"))}
             >
                 Parque
             </Button>
             <Button
-                variant="contained"
+                variant={tagsList.includes("urbano") ? "contained" : "outlined"}
                 color="primary"
-                className={`${buttonsState["urbano"] ? "tag-toggled" : ""}`}
-                onClick={() => onClickHandle("urbano")}
+                onClick={onClick ?? (() => onClickHandle("urbano"))}
             >
                 Urbano
             </Button>
             <Button
-                variant="contained"
+                variant={tagsList.includes("interior") ? "contained" : "outlined"}
                 color="primary"
-                className={`${buttonsState["interior"] ? "tag-toggled" : ""}`}
-                onClick={() => onClickHandle("interior")}
+                onClick={onClick ?? (() => onClickHandle("interior"))}
             >
                 Interior
             </Button>
             <Button
-                variant="contained"
+                variant={tagsList.includes("naturaleza") ? "contained" : "outlined"}
                 color="primary"
-                className={`${buttonsState["naturaleza"] ? "tag-toggled" : ""}`}
-                onClick={() => onClickHandle("naturaleza")}
+                onClick={onClick ?? (() => onClickHandle("naturaleza"))}
             >
                 Naturaleza
             </Button>
@@ -69,6 +60,8 @@ TagsButtons.propTypes = {
     userPosition: PropTypes.object,
     getSpotsRequest: PropTypes.func,
     updateFilterTags: PropTypes.func,
+    onClick: PropTypes.func,
+    className: PropTypes.string,
 }
 
 export default TagsButtons;

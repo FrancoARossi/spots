@@ -11,7 +11,6 @@ const spotsMiddleware = ({dispatch}) => (next) => (action) => {
     next(action);
     switch (action.type) {
         case GET_SPOTS_REQUEST:
-            console.log(action);
             services.getSpots()
                 .then((res) => {
                     let spotsList;

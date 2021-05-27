@@ -16,6 +16,13 @@ const MapScreen = ({
                        setSelectedSpot,
                        getSpotsRequest,
                        tagsList,
+                       selectLocation,
+                       onClick,
+                       width,
+                       height,
+                       top,
+                       left,
+                       children,
                    }) => {
     const onViewportChange = (newViewport) => {
         updateViewport({
@@ -63,6 +70,18 @@ const MapScreen = ({
         // eslint-disable-next-line
     }, [])
 
+    const selectLocationProps = () => {
+        if (selectLocation) {
+            return {
+                width: width,
+                height: height,
+                top: top,
+                left: left,
+                onClick: onClick,
+            }
+        }
+    }
+
     return (
         <div className={"map-container"}>
             <MapGL
@@ -71,12 +90,18 @@ const MapScreen = ({
                 mapStyle={"mapbox://styles/francoarossi/ckhe0w2rt08ff19nyff5iii23"}
                 onViewportChange={onViewportChange}
                 maxZoom={18}
+                {...selectLocationProps()}
             >
-                <AddSpotButton/>
-                <div className={"top-components-container"}>
-                    <SearchBar/>
-                    <Tags/>
-                </div>
+                {!selectLocation &&
+                <>
+                    <AddSpotButton/>
+                    <div className={"top-components-container"}>
+                        <SearchBar/>
+                        <Tags/>
+                    </div>
+                </>
+                }
+                {children}
                 <SpotsMarkers/>
                 <Geolocator/>
             </MapGL>
@@ -92,6 +117,13 @@ MapScreen.propTypes = {
     getSpotsRequest: PropTypes.func,
     tagsList: PropTypes.array,
     userPosition: PropTypes.object,
+    width: PropTypes.string,
+    height: PropTypes.string,
+    top: PropTypes.string,
+    left: PropTypes.string,
+    selectLocation: PropTypes.bool,
+    onClick: PropTypes.func,
+    children: PropTypes.elementType,
 }
 
 export default MapScreen;

@@ -7,9 +7,12 @@ import { useHistory } from 'react-router-dom';
 function AddSpotButton() {
   const history = useHistory();
 
-  const redirectToAddSpotScreen = () => history.push("/add-spot");
+  const redirectToAddSpotScreen = (e) => {
+      e.stopPropagation();
+      history.push("/add-spot");
+  }
   return (
-    <Button onClick={redirectToAddSpotScreen} className="add-spot" color="primary" variant="contained" size="large">
+    <Button onClick={(e) => redirectToAddSpotScreen(e)} className="add-spot" color="primary" variant="contained" size="large">
       <FaPlus/>
     </Button>
   )
