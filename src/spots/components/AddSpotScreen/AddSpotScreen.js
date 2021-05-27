@@ -13,23 +13,16 @@ import {Field, Form, Formik} from "formik";
 import * as yup from 'yup';
 import {object} from 'yup';
 import FullScreenDialog from "../../../common/FullScreenDialog/FullScreenDialog";
+import PropTypes from "prop-types";
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddSpotScreen = () => {
+const AddSpotScreen = ({createSpotRequest}) => {
     const [selectedTags, setSelectedTags] = useState([]);
     const [openDialog, setOpenDialog] = useState(false);
     const [spotCoords, setSpotCoords] = useState(null);
-    const [formValues, setFormValues] = useState({
-        name: "",
-        description: "",
-        longitude: null,
-        latitude: null,
-        images: null,
-        tags: []
-    });
 
     const isSelected = (tag) => {
         return selectedTags.includes(tag);
@@ -44,69 +37,44 @@ const AddSpotScreen = () => {
         }
     }
 
-    const onLocationSelect = (event) => setSpotCoords({
-        longitude: event.lngLat[0],
-        latitude: event.lngLat[1],
-    });
-
-    const headerTextComponent = () => {
-        return (
-            !spotCoords ?
-                <span className={"dialog-header-text"}>Seleccione una ubicación en el mapa</span>
-                :
-                <span className={"dialog-header-text"}>Ubicación seleccionada</span>
-        )
+    const onLocationSelect = (event, setFieldValue) => {
+        setSpotCoords(event.lngLat);
+        setFieldValue("longitude", event.lngLat[0]);
+        setFieldValue("latitude", event.lngLat[1]);
     }
 
-    const onFormSubmit = () => {
-        console.log("SUBMIT!")
-    }
+    const headerTextComponent = () => (
+        !spotCoords ?
+            <span className={"dialog-header-text"}>Seleccione una ubicación en el mapa</span>
+            :
+            <span className={"dialog-header-text"}>Ubicación seleccionada</span>
+    )
 
     return (
-        <>
-            <FullScreenDialog
-                open={openDialog}
-                onClose={() => setOpenDialog(false)}
-                transitionComponent={Transition}
-                headerTextComponent={headerTextComponent}
-                className={"map-container"}
-            >
-                <Map
-                    selectLocation
-                    onClick={onLocationSelect}
-                    width={"100%"}
-                    height={"100%"}
-                    top={"60px"}
-                    left={"0px"}
-                >
-                    {spotCoords &&
-                    <Marker
-                        longitude={spotCoords.longitude}
-                        latitude={spotCoords.latitude}
-                    >
-                        <FontAwesomeIcon icon={faMapMarkerAlt}
-                                         className={"location-selected"}/>
-                    </Marker>}
-                </Map>
-            </FullScreenDialog>
+        <div>
             <Formik
                 initialValues={{
-                    ...formValues
+                    name: "",
+                    description: "",
+                    latitude: 0,
+                    longitude: 0,
+                    images: [],
+                    tags: []
                 }}
                 validationSchema={
                     object({
                         name: yup.string().required("Debe introducir un nombre"),
                         description: yup.string().required("Debe ingresar una pequeña descripción"),
-                        longitude: yup.number().required("Debe seleccionar la ubicación"),
-                        latitude: yup.number().required("Debe seleccionar la ubicación"),
+                        latitude: yup.number().test("check-latitude", "Debe seleccionar la ubicación", (val) => val !== 0),
+                        longitude: yup.number().test("check-longitude", "Debe seleccionar la ubicación", (val) => val !== 0),
                         images: yup.array(),
-                        tags: yup.array().required("Debe seleccionar al menos un tag"),
+                        tags: yup.array().test("atleast-one-tag", "Debe seleccionar al menos un tag", (value) => value.length > 0),
                     })
                 }
-                onSubmit={onFormSubmit}
+                onSubmit={(values) => createSpotRequest(values)}
             >
                 {({errors, values, touched, setFieldValue, setFieldTouched, submitForm}) => (
-                    <Form novalidate={"novalidate"}>
+                    <Form>
                         <Grid md={5} xs={12} className="add-spot-container">
                             <h1>Añadir Spot</h1>
                             <Field
@@ -136,7 +104,7 @@ const AddSpotScreen = () => {
                                 }}
                             />
                             <Button
-                                className="form-field"
+                                className={`form-field ${errors.latitude && "error-button"}`}
                                 variant="outlined"
                                 color="primary"
                                 component="label"
@@ -144,7 +112,37 @@ const AddSpotScreen = () => {
                             >
                                 Seleccionar ubicación
                             </Button>
-                            <span>Coordenadas{spotCoords ? ` = (${spotCoords.longitude}, ${spotCoords.latitude})` : ""}</span>
+                            {errors.latitude && <span
+                                className={"MuiFormHelperText-root Mui-error"}>{errors.latitude}</span>}
+                            <FullScreenDialog
+                                open={openDialog}
+                                onClose={() => setOpenDialog(false)}
+                                transitionComponent={Transition}
+                                headerTextComponent={headerTextComponent()}
+                                className={"map-container"}
+                            >
+                                <Map
+                                    selectLocation
+                                    onClick={(event) => onLocationSelect(event, setFieldValue)}
+                                    width={"100%"}
+                                    height={"100%"}
+                                    top={"60px"}
+                                    left={"0px"}
+                                >
+                                    {spotCoords &&
+                                    <Marker
+                                        longitude={spotCoords[0]}
+                                        latitude={spotCoords[1]}
+                                    >
+                                        <FontAwesomeIcon icon={faMapMarkerAlt}
+                                                         className={"location-selected"}/>
+                                    </Marker>}
+                                </Map>
+                            </FullScreenDialog>
+                            <div>
+                                {spotCoords?.length > 0 &&
+                                <span>Coordenadas{` = (${spotCoords[0]}, ${spotCoords[1]})`}</span>}
+                            </div>
                             <Button
                                 className="form-field"
                                 variant="outlined"
@@ -158,16 +156,20 @@ const AddSpotScreen = () => {
                             <div className={"tags-center"}>
                                 <Tags onClick={handleTagClick}/>
                             </div>
-                            <Button className="form-field" variant="contained" color="primary" onClick={submitForm}>
+                            <Button className="form-field" variant="contained" color="primary"
+                                    onClick={Object.entries(errors).length === 0 && submitForm}>
                                 Enviar
                             </Button>
                         </Grid>
                     </Form>
                 )}
             </Formik>
-        </>
+        </div>
     )
 }
 
+AddSpotScreen.propTypes = {
+    createSpotRequest: PropTypes.func,
+}
 
 export default AddSpotScreen;
