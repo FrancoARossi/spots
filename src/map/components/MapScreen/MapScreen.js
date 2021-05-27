@@ -8,7 +8,15 @@ import SearchBar from "../../../common/SearchBar/SearchBar";
 import Tags from "../../../tags/containers/Tags";
 import AddSpotButton from "../../../common/AddSpotButton/AddSpotButton";
 
-const MapScreen = ({viewport, updateViewport, updateUserPosition, setSelectedSpot}) => {
+const MapScreen = ({
+                       viewport,
+                       userPosition,
+                       updateViewport,
+                       updateUserPosition,
+                       setSelectedSpot,
+                       getSpotsRequest,
+                       tagsList,
+                   }) => {
     const onViewportChange = (newViewport) => {
         updateViewport({
             latitude: newViewport.latitude,
@@ -50,6 +58,7 @@ const MapScreen = ({viewport, updateViewport, updateUserPosition, setSelectedSpo
     }, []);
 
     useEffect(() => {
+        getSpotsRequest(userPosition, tagsList);
         setSelectedSpot(null)
         // eslint-disable-next-line
     }, [])
@@ -62,10 +71,12 @@ const MapScreen = ({viewport, updateViewport, updateUserPosition, setSelectedSpo
                 mapStyle={"mapbox://styles/francoarossi/ckhe0w2rt08ff19nyff5iii23"}
                 onViewportChange={onViewportChange}
                 maxZoom={18}
-                >
-                <AddSpotButton/> 
-                <SearchBar/>
-                <Tags/>
+            >
+                <AddSpotButton/>
+                <div className={"top-components-container"}>
+                    <SearchBar/>
+                    <Tags/>
+                </div>
                 <SpotsMarkers/>
                 <Geolocator/>
             </MapGL>
@@ -78,6 +89,9 @@ MapScreen.propTypes = {
     updateViewport: PropTypes.func,
     updateUserPosition: PropTypes.func,
     setSelectedSpot: PropTypes.func,
+    getSpotsRequest: PropTypes.func,
+    tagsList: PropTypes.array,
+    userPosition: PropTypes.object,
 }
 
 export default MapScreen;

@@ -1,6 +1,6 @@
 import "./TagsButtons.scss"
 import { Button } from '@material-ui/core';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 
 const TagsButtons = ({
@@ -9,28 +9,21 @@ const TagsButtons = ({
                          getSpotsRequest,
                          updateFilterTags,
                      }) => {
-    const tagUnselected = "btn btn-sm btn-light";
-    const tagSelected = "btn btn-sm btn-primary";
     const [buttonsState, setButtonsState] = useState({
-        parque: tagUnselected,
-        urbano: tagUnselected,
-        interior: tagUnselected,
-        naturaleza: tagUnselected,
+        parque: false,
+        urbano: false,
+        interior: false,
+        naturaleza: false,
     });
 
-    const onClickHandle = (tag) => {
-        switch (buttonsState[tag]) {
-            case tagUnselected:
-                setButtonsState({...buttonsState, [tag]: tagSelected});
-                break;
-            case tagSelected:
-                setButtonsState({...buttonsState, [tag]: tagUnselected});
-                break;
-            default:
-                break;
-        }
-        updateFilterTags(tag);
+    useEffect(() => {
         getSpotsRequest(userPosition, tagsList);
+        //eslint-disable-next-line
+    }, [tagsList]);
+
+    const onClickHandle = (tag) => {
+        setButtonsState({...buttonsState, [tag]: !buttonsState[tag]})
+        updateFilterTags(tag);
     };
 
     return (
@@ -38,7 +31,7 @@ const TagsButtons = ({
             <Button
                 variant="contained"
                 color="primary"
-                className={buttonsState["parque"]}
+                className={`${buttonsState["parque"] ? "tag-toggled" : ""}`}
                 onClick={() => onClickHandle("parque")}
             >
                 Parque
@@ -46,7 +39,7 @@ const TagsButtons = ({
             <Button
                 variant="contained"
                 color="primary"
-                className={buttonsState["urbano"]}
+                className={`${buttonsState["urbano"] ? "tag-toggled" : ""}`}
                 onClick={() => onClickHandle("urbano")}
             >
                 Urbano
@@ -54,7 +47,7 @@ const TagsButtons = ({
             <Button
                 variant="contained"
                 color="primary"
-                className={buttonsState["interior"]}
+                className={`${buttonsState["interior"] ? "tag-toggled" : ""}`}
                 onClick={() => onClickHandle("interior")}
             >
                 Interior
@@ -62,7 +55,7 @@ const TagsButtons = ({
             <Button
                 variant="contained"
                 color="primary"
-                className={buttonsState["naturaleza"]}
+                className={`${buttonsState["naturaleza"] ? "tag-toggled" : ""}`}
                 onClick={() => onClickHandle("naturaleza")}
             >
                 Naturaleza

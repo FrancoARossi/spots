@@ -11,6 +11,7 @@ const tagsReducer = (state = initialState, action) => {
                 let indexOfTag = state.tagsList.indexOf(action.tag);
                 let newTagsList = [...state.tagsList];
                 newTagsList.splice(indexOfTag, 1);
+                console.log(newTagsList);
 
                 return {
                     ...state,

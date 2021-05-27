@@ -2,12 +2,11 @@
 
 .tags-container {
   display: flex;
-  justify-content: space-around;
-  padding-top: 20px;
-}
+  width: 80%;
+  padding-top: 15px;
+  justify-content: space-evenly;
 
-.icon {
-  &.MuiButton-root{
-    font-size: 1.5em;
+  .tag-toggled {
+    color: black;
   }
 }

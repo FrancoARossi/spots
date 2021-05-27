@@ -1,5 +1,5 @@
 import "./SpotsMarkers.scss"
-import React, {useEffect} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import actions from "../../actions/actions";
@@ -15,14 +15,8 @@ import logo from "../../assets/logo.png";
 const SpotsMarkers = ({
                           spotsList,
                           selectedSpot,
-                          userPosition,
-                          getSpotsRequest,
                           setSelectedSpot,
                       }) => {
-    useEffect(() => {
-        getSpotsRequest(userPosition);
-        // eslint-disable-next-line
-    }, []);
 
     const history = useHistory();
 
@@ -81,7 +75,6 @@ const SpotsMarkers = ({
 SpotsMarkers.propTypes = {
     spotsList: PropTypes.array,
     selectedSpot: PropTypes.object,
-    userPosition: PropTypes.object,
     getSpotsRequest: PropTypes.func,
     setSelectedSpot: PropTypes.func,
 }
@@ -93,7 +86,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getSpotsRequest: (userPosition) => dispatch(actions.spots.getSpots.request(userPosition)),
     setSelectedSpot: (spot) => dispatch(actions.spots.setSelectedSpot(spot)),
 });
 

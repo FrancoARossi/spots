@@ -8,8 +8,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getSpotsRequest: (userPosition, tags) =>
-        dispatch(actions.spots.getSpots.request(userPosition, tags)),
+    getSpotsRequest: (userPosition, tagsList) =>
+        dispatch(actions.spots.getSpots.request(userPosition, tagsList)),
     updateFilterTags: (tag) => dispatch(actions.tags.updateFilterTags(tag)),
 });
 

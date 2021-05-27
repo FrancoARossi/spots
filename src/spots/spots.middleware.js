@@ -4,18 +4,18 @@ import {GET_SPOTS_REQUEST} from "./spots.actions";
 import {sortSpotsByDistanceToUser} from "../utils/sortSpotsByDistanceToUser";
 
 const filterSpotByTags = (spot, tagsList) => {
-    return tagsList.every((tag) => spot.tags.includes(tag));
+    return tagsList.some((tag) => spot.tags.includes(tag));
 };
 
 const spotsMiddleware = ({dispatch}) => (next) => (action) => {
     next(action);
     switch (action.type) {
         case GET_SPOTS_REQUEST:
-            services
-                .getSpots()
+            console.log(action);
+            services.getSpots()
                 .then((res) => {
-                    let spotsList = [];
-                    if (action.tagsList) {
+                    let spotsList;
+                    if (action.tagsList.length > 0) {
                         spotsList = res.filter((spot) =>
                             filterSpotByTags(spot, action.tagsList)
                         );
