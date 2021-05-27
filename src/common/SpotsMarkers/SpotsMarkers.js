@@ -8,9 +8,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
 import {useHistory} from "react-router-dom";
 import {capitalizeWord} from "../../utils/capitalizeWord";
-import {Grid} from "@material-ui/core";
-//TODO: Fix popup grid dimensions and find a way to display the images
-import logo from "../../assets/logo.png";
 
 const SpotsMarkers = ({
                           spotsList,
@@ -24,6 +21,7 @@ const SpotsMarkers = ({
         e.stopPropagation();
         history.push(`/spot/${spotId}`);
     }
+
     const selectedSpotTags = () => {
         return [...selectedSpot.tags].map(tag => capitalizeWord(tag)).join(", ")
     }
@@ -52,18 +50,6 @@ const SpotsMarkers = ({
                     <div className={"popup-content text-ellipsis"}>
                             <span className={"spot-name"}
                                   onClick={(e) => redirectToSpotDetails(e, selectedSpot.id)}>{selectedSpot.name}</span>
-                        <Grid container>
-                            <Grid item xs={6} className={"spot-description"}>
-                                    <span
-                                        className={"multi-line-text-ellipsis"}>{selectedSpot.description}<br/></span>
-                                <br/>
-                                <span
-                                    className={"multi-line-text-ellipsis"}>Tags: {selectedSpotTags()}</span>
-                            </Grid>
-                            <Grid item xs={6} className={"spot-images"}>
-                                <img src={logo} alt={"image-test"} width={200} height={200}/>
-                            </Grid>
-                        </Grid>
                     </div>
                 </Popup>
             </div>

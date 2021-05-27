@@ -4,7 +4,7 @@ import {GET_SPOTS_REQUEST} from "./spots.actions";
 import {sortSpotsByDistanceToUser} from "../utils/sortSpotsByDistanceToUser";
 
 const filterSpotByTags = (spot, tagsList) => {
-    return tagsList.some((tag) => spot.tags.includes(tag));
+    return tagsList.every((tag) => spot.tags.includes(tag));
 };
 
 const spotsMiddleware = ({dispatch}) => (next) => (action) => {
