@@ -18,10 +18,10 @@ const items = [
 const SpotDetailsScreen = ({selectedSpot}) => {
     return (
         <div className={"spot-container"}>
-            <h2 className={"title"}>{selectedSpot.name}</h2>
+            <h2 className={"title"}>{selectedSpot?.name}</h2>
             <div className={"content"}>
-                <p>{selectedSpot.description}</p>
-                {selectedSpot.tags.map(tag => (<Button key={tag} color="primary" variant="outlined" size="small" className="tag-btn">{tag}</Button>))}
+                <p>{selectedSpot?.description}</p>
+                {selectedSpot?.tags.map(tag => (<Button key={tag} color="primary" variant="outlined" size="small" className="tag-btn">{tag}</Button>))}
             <Carousel>
                 {
                     //  TODO replace items array with selectedSpot.imgs when implemented

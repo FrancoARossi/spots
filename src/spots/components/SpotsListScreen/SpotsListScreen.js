@@ -5,12 +5,13 @@ import {Button} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {useHistory} from "react-router-dom";
 
-const SpotsListScreen = ({spotsList}) => {
+const SpotsListScreen = ({spotsList, setSelectedSpot}) => {
 
     const history = useHistory();
 
     const redirectToSpotDetails = (e, spot) => {
         e.stopPropagation();
+        setSelectedSpot(spot);
         history.push(`/spot/${spot.id}`);
     }
 
@@ -32,7 +33,8 @@ const SpotsListScreen = ({spotsList}) => {
 };
 
 SpotsListScreen.propTypes = {
-    spotsList: PropTypes.array
+    spotsList: PropTypes.array,
+    setSelectedSpot: PropTypes.func,
 }
 
 export default SpotsListScreen;

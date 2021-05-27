@@ -7,7 +7,6 @@ import {Marker, Popup} from "react-map-gl";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
 import {useHistory} from "react-router-dom";
-import {capitalizeWord} from "../../utils/capitalizeWord";
 
 const SpotsMarkers = ({
                           spotsList,
@@ -19,11 +18,8 @@ const SpotsMarkers = ({
 
     const redirectToSpotDetails = (e, spotId) => {
         e.stopPropagation();
-        history.push(`/spot/${spotId}`);
-    }
 
-    const selectedSpotTags = () => {
-        return [...selectedSpot.tags].map(tag => capitalizeWord(tag)).join(", ")
+        history.push(`/spot/${spotId}`);
     }
 
     return (
