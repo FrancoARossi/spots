@@ -26,7 +26,7 @@ const GeolocationController = ({updateUserPosition}) => {
     const positionOptions = {
         enableHighAccuracy: true,
         maximumAge: 20000,
-        timeout: 2000,
+        timeout: 5000,
     };
 
     return (
