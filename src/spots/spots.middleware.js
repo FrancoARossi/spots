@@ -34,12 +34,15 @@ const spotsMiddleware = ({dispatch, getState}) => (next) => (action) => {
             break;
         case CREATE_SPOT_REQUEST:
             services.createSpot(action.spot)
-                .then((res) => dispatch(actions.spots.createSpot.response(res)))
+                .then((res) => {
+                    dispatch(actions.spots.createSpot.response(res));
+                    action.photographs.forEach(photograph => dispatch(actions.spots.uploadPhotograph.request(photograph)));
+                })
                 .catch((err) => dispatch(actions.spots.createSpot.error(err)))
             break;
         case UPLOAD_PHOTOGRAPH_REQUEST:
             services.uploadPhotograph(action.photograph)
-                .then((res) => action.callback(res.url_viewer))
+                .then((res) => dispatch(actions.spots.createPhotograph.request(res.url_viewer)))
                 .catch((err) => console.log({error: UPLOAD_PHOTOGRAPH_REQUEST, err}))
             break;
         case CREATE_PHOTOGRAPH_REQUEST:

@@ -5,8 +5,8 @@ import actions from "../../actions/actions";
 const mapStateToProps = () => ({})
 
 const mapDispatchToProps = (dispatch) => ({
-    createSpotRequest: (spot) => dispatch(actions.spots.createSpot.request(spot)),
-    uploadPhotograph: (photograph, callback) => dispatch(actions.spots.uploadPhotograph(photograph, callback)),
+    createSpotRequest: (spot, photographs) => dispatch(actions.spots.createSpot.request(spot, photographs)),
+    uploadPhotograph: (photograph) => dispatch(actions.spots.uploadPhotograph(photograph)),
     createPhotograph: (imgUrl) => dispatch(actions.spots.createPhotograph.request(imgUrl)),
 })
 

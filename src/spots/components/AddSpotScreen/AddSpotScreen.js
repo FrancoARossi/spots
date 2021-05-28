@@ -18,7 +18,7 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddSpotScreen = ({createSpotRequest, uploadPhotograph, createPhotograph}) => {
+const AddSpotScreen = ({createSpotRequest}) => {
     const [openDialog, setOpenDialog] = useState(false);
     const [spotCoords, setSpotCoords] = useState(null);
 
@@ -98,8 +98,7 @@ const AddSpotScreen = ({createSpotRequest, uploadPhotograph, createPhotograph}) 
             latitude: values.latitude,
             longitude: values.longitude,
             tags: values.tags
-        });
-        values.photographs.forEach(photograph => uploadPhotograph(photograph, createPhotograph));
+        }, values.photographs);
         actions.resetForm();
         setSpotCoords([]);
     }

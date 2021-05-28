@@ -22,11 +22,11 @@ const spotsActions = {
     },
     setSelectedSpot: (spot) => ({type: SET_SELECTED_SPOT, spot}),
     createSpot: {
-        request: (spot) => ({type: CREATE_SPOT_REQUEST, spot}),
+        request: (spot, photographs) => ({type: CREATE_SPOT_REQUEST, spot, photographs}),
         response: (res) => ({type: CREATE_SPOT_RESPONSE, res}),
         error: (err) => ({type: CREATE_SPOT_ERROR, err})
     },
-    uploadPhotograph: (photograph, callback) => ({type: UPLOAD_PHOTOGRAPH_REQUEST, photograph, callback}),
+    uploadPhotograph: (photograph) => ({type: UPLOAD_PHOTOGRAPH_REQUEST, photograph}),
     createPhotograph: {
         request: (imgUrl) => ({type: CREATE_PHOTOGRAPH_REQUEST, imgUrl}),
         response: (res) => ({type: CREATE_PHOTOGRAPH_RESPONSE, res}),
