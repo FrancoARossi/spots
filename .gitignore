@@ -22,3 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 node_modules
+/.idea/.gitignore
+/.idea/jsLinters/eslint.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/spots.iml
+/.idea/vcs.xml

@@ -46,13 +46,13 @@ const MapScreen = ({
     };
 
     const errorPosition = (error) => {
-        console.warn("ERROR(" + error.code + "): " + error.message);
+        alert("ERROR(" + error.code + "): " + error.message);
     };
 
     const positionOptions = {
         enableHighAccuracy: true,
         maximumAge: 20000,
-        timeout: 2000,
+        timeout: 5000,
     };
 
     useEffect(() => {
