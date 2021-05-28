@@ -1,10 +1,19 @@
 import "./SpotDetailsScreen.scss";
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import Carousel from 'react-elastic-carousel';
 
-const SpotDetailsScreen = ({selectedSpot, photographs}) => {
+const SpotDetailsScreen = ({selectedSpot, selectedSpotPhotographs, getSpotPhotographs, resetSelectedSpotPhotographs}) => {
+
+    useEffect(() => {
+        getSpotPhotographs(selectedSpot.id);
+
+        return () => {
+            resetSelectedSpotPhotographs();
+        }
+    }, [])
+
     return (
         <div className={"spot-container"}>
             <h2 className={"title"}>{selectedSpot?.name}</h2>
@@ -13,9 +22,9 @@ const SpotDetailsScreen = ({selectedSpot, photographs}) => {
                 {selectedSpot?.tags.map(tag => (
                     <Button key={tag} color="primary" variant="outlined" size="small"
                             className="tag-btn">{tag}</Button>))}
-                {photographs.some(photo => photo.id === selectedSpot.id) &&
+                {selectedSpotPhotographs.length > 0 &&
                 <Carousel isRTL={false}>
-                    {photographs.map((photo, index) => photo.spotId === selectedSpot.id &&
+                    {selectedSpotPhotographs.map((photo, index) => photo.spotId === selectedSpot.id &&
                         <img alt={"Spot Photograph"} key={index} src={photo.url}
                              className="carousel-img"/>)}
                 </Carousel>}
@@ -26,7 +35,9 @@ const SpotDetailsScreen = ({selectedSpot, photographs}) => {
 
 SpotDetailsScreen.propTypes = {
     selectedSpot: PropTypes.object,
-    photographs: PropTypes.array,
+    selectedSpotPhotographs: PropTypes.array,
+    getSpotPhotographs: PropTypes.func,
+    resetSelectedSpotPhotographs: PropTypes.func,
 }
 
 export default SpotDetailsScreen;

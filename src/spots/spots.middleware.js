@@ -5,6 +5,7 @@ import {
     CREATE_SPOT_REQUEST,
     UPLOAD_PHOTOGRAPH_REQUEST,
     CREATE_PHOTOGRAPH_REQUEST,
+    GET_SPOT_PHOTOGRAPHS_REQUEST,
 } from "./spots.actions";
 
 const filterSpotByTags = (spot, tagsList) => {
@@ -45,6 +46,11 @@ const spotsMiddleware = ({dispatch, getState}) => (next) => (action) => {
             services.createPhotograph(action.imgUrl, getState().spots.selectedSpot.id)
                 .then((res) => dispatch(actions.spots.createPhotograph.response(res)))
                 .catch((err) => console.log({error: CREATE_PHOTOGRAPH_REQUEST, err}))
+            break;
+        case GET_SPOT_PHOTOGRAPHS_REQUEST:
+            services.getSpotPhotographs(action.spotId)
+                .then(res => dispatch(actions.spots.getSpotPhotographs.request(res)))
+                .catch(err => console.log({error: GET_SPOT_PHOTOGRAPHS_REQUEST, err}))
             break;
         default:
             return action;

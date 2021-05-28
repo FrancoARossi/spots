@@ -6,7 +6,7 @@ const mapStateToProps = () => ({})
 
 const mapDispatchToProps = (dispatch) => ({
     createSpotRequest: (spot) => dispatch(actions.spots.createSpot.request(spot)),
-    uploadPhotograph: (photograph) => dispatch(actions.spots.uploadPhotograph(photograph)),
+    uploadPhotograph: (photograph, callback) => dispatch(actions.spots.uploadPhotograph(photograph, callback)),
     createPhotograph: (imgUrl) => dispatch(actions.spots.createPhotograph.request(imgUrl)),
 })
 

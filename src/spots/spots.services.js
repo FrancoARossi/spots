@@ -5,4 +5,5 @@ export const services = {
     createSpot: (spot) => post("spots/post", spot),
     uploadPhotograph: (photograph) => postImage(photograph),
     createPhotograph: (imgUrl, spotId) => post("photography/post", {url: imgUrl, spotId: spotId}),
+    getSpotPhotographs: (spotId) => get(`photographs/spot/${spotId}`),
 };

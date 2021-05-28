@@ -9,6 +9,10 @@ export const UPLOAD_PHOTOGRAPH_REQUEST = "UPLOAD_PHOTOGRAPH_REQUEST";
 export const CREATE_PHOTOGRAPH_REQUEST = "CREATE_PHOTOGRAPH_REQUEST";
 export const CREATE_PHOTOGRAPH_RESPONSE = "CREATE_PHOTOGRAPH_RESPONSE";
 export const CREATE_PHOTOGRAPH_ERROR = "CREATE_PHOTOGRAPH_ERROR";
+export const GET_SPOT_PHOTOGRAPHS_REQUEST = "GET_SPOT_PHOTOGRAPHS_REQUEST";
+export const GET_SPOT_PHOTOGRAPHS_RESPONSE = "GET_SPOT_PHOTOGRAPHS_RESPONSE";
+export const GET_SPOT_PHOTOGRAPHS_ERROR = "GET_SPOT_PHOTOGRAPHS_ERROR";
+export const RESET_SELECTED_SPOT_PHOTOGRAPHS = "RESET_SELECTED_SPOT_PHOTOGRAPHS";
 
 const spotsActions = {
     getSpots: {
@@ -27,7 +31,13 @@ const spotsActions = {
         request: (imgUrl) => ({type: CREATE_PHOTOGRAPH_REQUEST, imgUrl}),
         response: (res) => ({type: CREATE_PHOTOGRAPH_RESPONSE, res}),
         error: (err) => ({type: CREATE_PHOTOGRAPH_ERROR, err})
-    }
+    },
+    getSpotPhotographs: {
+        request: (spotId) => ({type: GET_SPOT_PHOTOGRAPHS_REQUEST, spotId}),
+        response: (res) => ({type: GET_SPOT_PHOTOGRAPHS_RESPONSE, res}),
+        error: (err) => ({type: GET_SPOT_PHOTOGRAPHS_ERROR, err}),
+    },
+    resetSelectedSpotPhotographs: () => ({type: RESET_SELECTED_SPOT_PHOTOGRAPHS})
 };
 
 export default spotsActions;

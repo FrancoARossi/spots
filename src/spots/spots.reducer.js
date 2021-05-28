@@ -6,14 +6,16 @@ import {
     CREATE_SPOT_REQUEST,
     CREATE_SPOT_RESPONSE,
     CREATE_SPOT_ERROR,
-    CREATE_PHOTOGRAPH_RESPONSE,
+    //CREATE_PHOTOGRAPH_RESPONSE,
     //CREATE_PHOTOGRAPH_ERROR,
+    GET_SPOT_PHOTOGRAPHS_RESPONSE,
+    RESET_SELECTED_SPOT_PHOTOGRAPHS,
 } from "./spots.actions";
 
 const initialState = {
     spotsList: [],
     selectedSpot: null,
-    photographs: [],
+    selectedSpotPhotographs: [],
     ui: {
         pending: {
             getSpotsPending: false,
@@ -112,10 +114,15 @@ const spotsReducer = (state = initialState, action) => {
                     }
                 }
             }
-        case CREATE_PHOTOGRAPH_RESPONSE:
+        case GET_SPOT_PHOTOGRAPHS_RESPONSE:
             return {
                 ...state,
-                photographs: [...state.photographs, action.res]
+                selectedSpotPhotographs: action.res,
+            }
+        case RESET_SELECTED_SPOT_PHOTOGRAPHS:
+            return {
+                ...state,
+                selectedSpotPhotographs: []
             }
         default:
             return state;
