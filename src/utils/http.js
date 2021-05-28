@@ -27,7 +27,7 @@ export const post = (path, body) => (
 
 export const postImage = (img) => {
     let body = new FormData();
-    body.set('key', '0134cedbaf342391eec2d5965422e417')
+    body.set('key', 'fc26e4e4669f2a30bf5f04882c3dd201')
     body.append('image', img)
 
     return axios

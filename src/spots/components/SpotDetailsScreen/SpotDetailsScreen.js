@@ -22,8 +22,8 @@ const SpotDetailsScreen = ({selectedSpot, selectedSpotPhotographs, getSpotPhotog
                 {selectedSpot?.tags.map(tag => (
                     <Button key={tag} color="primary" variant="outlined" size="small"
                             className="tag-btn">{tag}</Button>))}
-                {selectedSpotPhotographs.length > 0 &&
-                <Carousel isRTL={false}>
+                {selectedSpotPhotographs?.length > 0 &&
+                <Carousel isRTL={false} className="carousel">
                     {selectedSpotPhotographs.map((photo, index) => photo.spotId === selectedSpot.id &&
                         <img alt={"Spot Photograph"} key={index} src={photo.url}
                              className="carousel-img"/>)}

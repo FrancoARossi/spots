@@ -36,13 +36,17 @@ const spotsMiddleware = ({dispatch, getState}) => (next) => (action) => {
             services.createSpot(action.spot)
                 .then((res) => {
                     dispatch(actions.spots.createSpot.response(res));
-                    action.photographs.forEach(photograph => dispatch(actions.spots.uploadPhotograph.request(photograph)));
+                    action.photographs.forEach(photograph => {
+                        console.log(action)
+                        dispatch(actions.spots.uploadPhotograph(photograph)
+                        )}
+                        );
                 })
                 .catch((err) => dispatch(actions.spots.createSpot.error(err)))
             break;
         case UPLOAD_PHOTOGRAPH_REQUEST:
             services.uploadPhotograph(action.photograph)
-                .then((res) => dispatch(actions.spots.createPhotograph.request(res.url_viewer)))
+                .then((res) => dispatch(actions.spots.createPhotograph.request(res.url)))
                 .catch((err) => console.log({error: UPLOAD_PHOTOGRAPH_REQUEST, err}))
             break;
         case CREATE_PHOTOGRAPH_REQUEST:
@@ -51,8 +55,9 @@ const spotsMiddleware = ({dispatch, getState}) => (next) => (action) => {
                 .catch((err) => console.log({error: CREATE_PHOTOGRAPH_REQUEST, err}))
             break;
         case GET_SPOT_PHOTOGRAPHS_REQUEST:
+            console.log(action)
             services.getSpotPhotographs(action.spotId)
-                .then(res => dispatch(actions.spots.getSpotPhotographs.request(res)))
+                .then(res => dispatch(actions.spots.getSpotPhotographs.response(res)))
                 .catch(err => console.log({error: GET_SPOT_PHOTOGRAPHS_REQUEST, err}))
             break;
         default:

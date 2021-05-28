@@ -122,7 +122,7 @@ const spotsReducer = (state = initialState, action) => {
         case RESET_SELECTED_SPOT_PHOTOGRAPHS:
             return {
                 ...state,
-                selectedSpotPhotographs: []
+                selectedSpotPhotographs: null
             }
         default:
             return state;

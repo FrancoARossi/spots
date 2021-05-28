@@ -20,6 +20,14 @@
   }
 }
 
-.carousel-img {
+.carousel {
   margin-top: 1em;
+  width: 400px;
+  height: 300px;
+}
+
+.carousel-img {
+  object-fit: fill;
+  width: 400px;
+  height: 300px;
 }
