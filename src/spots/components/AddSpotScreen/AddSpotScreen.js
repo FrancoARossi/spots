@@ -3,7 +3,6 @@ import React, {useState, forwardRef} from 'react'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Tags from "../../../tags/containers/Tags";
 import Slide from '@material-ui/core/Slide';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
@@ -13,21 +12,15 @@ import {Field, Form, Formik} from "formik";
 import * as yup from 'yup';
 import {object} from 'yup';
 import FullScreenDialog from "../../../common/FullScreenDialog/FullScreenDialog";
-<<<<<<< Updated upstream
 import PropTypes from "prop-types";
-=======
-import axios from "axios";
-
->>>>>>> Stashed changes
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddSpotScreen = ({createSpotRequest}) => {
+const AddSpotScreen = ({createSpotRequest, uploadPhotograph, createPhotograph}) => {
     const [openDialog, setOpenDialog] = useState(false);
     const [spotCoords, setSpotCoords] = useState(null);
-
 
     //TODO: Re-do tags logic (DISGUSTING)
     const isSelected = (tag, values) => {
@@ -49,20 +42,7 @@ const AddSpotScreen = ({createSpotRequest}) => {
         setFieldValue("longitude", event.lngLat[0]);
         setFieldValue("latitude", event.lngLat[1]);
     }
-    
-    function uploadImage(img) {
-        let body = new FormData()
-        body.set('key', '0134cedbaf342391eec2d5965422e417')
-        body.append('image', img)
 
-        return axios({
-            method: 'post',
-            url: 'https://api.imgbb.com/1/upload',
-            data: body
-        })
-    }
-
-<<<<<<< Updated upstream
     const headerTextComponent = () => (
         !spotCoords ?
             <span className={"dialog-header-text"}>Seleccione una ubicación en el mapa</span>
@@ -70,34 +50,15 @@ const AddSpotScreen = ({createSpotRequest}) => {
             <span className={"dialog-header-text"}>Ubicación seleccionada</span>
     )
 
+
     const renderTags = (values, setFieldValue, setFieldTouched) => (
         <div className={"tags-center"}>
             <Button
-                onClick={(e) => handleTagClick(e, "parque", values, setFieldValue, setFieldTouched)}
-                key={"parque"}
-                color="primary"
-                variant={isSelected("parque", values) ? "contained" : "outlined"}
-                size="small"
-=======
-    const onFormSubmit = () => {
-        console.log("SUBMIT!")
-    }
-    function handleChange(e){
-        uploadImage(e.target.files[0])
-            .then(resp => {
-                console.log(resp.data.data.url_viewer) // public url
-            })
-    }
-    return (
-        <>
-            <FullScreenDialog
-                open={openDialog}
-                onClose={() => setOpenDialog(false)}
-                transitionComponent={Transition}
-                headerTextComponent={headerTextComponent}
-                className={"map-container"}
->>>>>>> Stashed changes
-            >
+            onClick={(e) => handleTagClick(e, "parque", values, setFieldValue, setFieldTouched)}
+            key={"parque"}
+            color="primary"
+            variant={isSelected("parque", values) ? "contained" : "outlined"}
+            size="small">
                 Parque
             </Button>
             <Button
@@ -130,6 +91,19 @@ const AddSpotScreen = ({createSpotRequest}) => {
         </div>
     )
 
+    const handleFormSubmit = (values, actions) => {
+        createSpotRequest({
+            name: values.name,
+            description: values.description,
+            latitude: values.latitude,
+            longitude: values.longitude,
+            tags: values.tags
+        });
+        values.photographs.forEach(photograph => uploadPhotograph(photograph, createPhotograph));
+        actions.resetForm();
+        setSpotCoords([]);
+    }
+
     return (
         <div>
             <Formik
@@ -138,7 +112,7 @@ const AddSpotScreen = ({createSpotRequest}) => {
                     description: "",
                     latitude: 0,
                     longitude: 0,
-                    images: [],
+                    photographs: [],
                     tags: []
                 }}
                 validationSchema={
@@ -147,11 +121,11 @@ const AddSpotScreen = ({createSpotRequest}) => {
                         description: yup.string().required("Debe ingresar una pequeña descripción"),
                         latitude: yup.number().test("check-latitude", "Debe seleccionar la ubicación", (val) => val !== 0),
                         longitude: yup.number().test("check-longitude", "Debe seleccionar la ubicación", (val) => val !== 0),
-                        images: yup.array(),
+                        photographs: yup.array(),
                         tags: yup.array().test("atleast-one-tag", "Debe seleccionar al menos un tag", (value) => value.length > 0),
                     })
                 }
-                onSubmit={(values) => createSpotRequest(values)}
+                onSubmit={handleFormSubmit}
             >
                 {({errors, values, touched, setFieldValue, setFieldTouched, submitForm}) => (
                     <Form>
@@ -231,10 +205,10 @@ const AddSpotScreen = ({createSpotRequest}) => {
                                 variant="outlined"
                                 color="primary"
                                 component="label"
-                                onChange={(e)=>handleChange(e)}
+                                onChange={(e) => setFieldValue("photographs", [...values.photographs, ...e.target.files])}
                             >
                                 Añadir fotografía
-                                <input type="file" accept="image/png, image/jpeg" hidden/>
+                                <input type="file" accept="image/png, image/jpeg" hidden multiple/>
 
                             </Button>
                             <span className="tags-title">Seleccionar tags:</span>
@@ -255,6 +229,8 @@ const AddSpotScreen = ({createSpotRequest}) => {
 
 AddSpotScreen.propTypes = {
     createSpotRequest: PropTypes.func,
+    uploadPhotograph: PropTypes.func,
+    createPhotograph: PropTypes.func,
 }
 
 export default AddSpotScreen;

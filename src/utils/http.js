@@ -1,7 +1,7 @@
 import axios from "axios";
 import {api} from "../api"
 
-export const get = (path) =>
+export const get = (path) => (
     axios
         .get(api.url + path, {
             headers: {
@@ -14,15 +14,25 @@ export const get = (path) =>
         })
         .then((response) => {
             return response.data;
-        });
+        })
+)
 
-//TODO: WIP (waiting for backend)
-export const post = (path, body) =>
+export const post = (path, body) => (
     axios
         .post(api.url + path, body)
         .then((res) => {
             return res.data;
         })
-        .catch((err) => {
-            return err;
+)
+
+export const postImage = (img) => {
+    let body = new FormData();
+    body.set('key', '0134cedbaf342391eec2d5965422e417')
+    body.append('image', img)
+
+    axios
+        .post("https://api.imgbb.com/1/upload", body)
+        .then((res) => {
+            return res.data.data;
         });
+}

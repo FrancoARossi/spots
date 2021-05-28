@@ -3,17 +3,25 @@ import {
     GET_SPOTS_RESPONSE,
     GET_SPOTS_ERROR,
     SET_SELECTED_SPOT,
+    CREATE_SPOT_REQUEST,
+    CREATE_SPOT_RESPONSE,
+    CREATE_SPOT_ERROR,
+    CREATE_PHOTOGRAPH_RESPONSE,
+    //CREATE_PHOTOGRAPH_ERROR,
 } from "./spots.actions";
 
 const initialState = {
     spotsList: [],
     selectedSpot: null,
+    photographs: [],
     ui: {
         pending: {
             getSpotsPending: false,
+            createSpotPending: false
         },
         error: {
             getSpotsError: false,
+            createSpotError: false
         }
     }
 };
@@ -64,6 +72,51 @@ const spotsReducer = (state = initialState, action) => {
             };
         case SET_SELECTED_SPOT:
             return {...state, selectedSpot: action.spot};
+        case CREATE_SPOT_REQUEST:
+            return {
+                ...state,
+                ui: {
+                    pending: {
+                        ...state.ui.pending,
+                        createSpotPending: true,
+                    },
+                    error: {
+                        ...state.ui.error,
+                        createSpotError: false,
+                    }
+                }
+            }
+        case CREATE_SPOT_RESPONSE:
+            return {
+                ...state,
+                selectedSpot: action.res,
+                spotsList: [...state.spotsList, action.res],
+                ui: {
+                    pending: {
+                        ...state.ui.pending,
+                        createSpotPending: false,
+                    }
+                }
+            }
+        case CREATE_SPOT_ERROR:
+            return {
+                ...state,
+                ui: {
+                    pending: {
+                        ...state.ui.pending,
+                        createSpotPending: false,
+                    },
+                    error: {
+                        ...state.ui.error,
+                        createSpotError: true,
+                    }
+                }
+            }
+        case CREATE_PHOTOGRAPH_RESPONSE:
+            return {
+                ...state,
+                photographs: [...state.photographs, action.res]
+            }
         default:
             return state;
     }
