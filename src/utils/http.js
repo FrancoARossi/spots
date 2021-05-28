@@ -30,7 +30,7 @@ export const postImage = (img) => {
     body.set('key', '0134cedbaf342391eec2d5965422e417')
     body.append('image', img)
 
-    axios
+    return axios
         .post("https://api.imgbb.com/1/upload", body)
         .then((res) => {
             return res.data.data;
