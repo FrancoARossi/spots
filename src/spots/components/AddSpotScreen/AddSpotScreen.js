@@ -54,11 +54,11 @@ const AddSpotScreen = ({createSpotRequest}) => {
     const renderTags = (values, setFieldValue, setFieldTouched) => (
         <div className={"tags-center"}>
             <Button
-            onClick={(e) => handleTagClick(e, "parque", values, setFieldValue, setFieldTouched)}
-            key={"parque"}
-            color="primary"
-            variant={isSelected("parque", values) ? "contained" : "outlined"}
-            size="small">
+                onClick={(e) => handleTagClick(e, "parque", values, setFieldValue, setFieldTouched)}
+                key={"parque"}
+                color="primary"
+                variant={isSelected("parque", values) ? "contained" : "outlined"}
+                size="small">
                 Parque
             </Button>
             <Button
@@ -101,6 +101,19 @@ const AddSpotScreen = ({createSpotRequest}) => {
         }, values.photographs);
         actions.resetForm();
         setSpotCoords([]);
+    }
+
+    const renderFilesNames = (photographs) => {
+        const amount = photographs.length;
+        const filesNames = photographs.map((photo, index) => {
+            if (amount - 1 === index) {
+                return `${photo.name}`
+            } else {
+                return `${photo.name} | `
+            }
+        })
+
+        return <span>{filesNames}</span>;
     }
 
     return (
@@ -157,7 +170,7 @@ const AddSpotScreen = ({createSpotRequest}) => {
                                 }}
                             />
                             <Button
-                                className={`form-field ${(errors.latitude && touched.latitude) && "error-button"}`}
+                                className={`form-field ${(errors.latitude && touched.latitude) && "button-w-helper"}`}
                                 variant="outlined"
                                 color="primary"
                                 component="label"
@@ -200,7 +213,7 @@ const AddSpotScreen = ({createSpotRequest}) => {
                                 <span>Coordenadas{` = (${spotCoords[0]}, ${spotCoords[1]})`}</span>}
                             </div>
                             <Button
-                                className="form-field"
+                                className={`form-field ${values.photographs.length > 0 && "button-w-helper"}`}
                                 variant="outlined"
                                 color="primary"
                                 component="label"
@@ -208,8 +221,8 @@ const AddSpotScreen = ({createSpotRequest}) => {
                             >
                                 Añadir fotografía
                                 <input type="file" accept="image/png, image/jpeg" hidden multiple/>
-
                             </Button>
+                            {(values.photographs.length > 0) && renderFilesNames(values.photographs)}
                             <span className="tags-title">Seleccionar tags:</span>
                             {renderTags(values, setFieldValue, setFieldTouched)}
                             {(errors.tags && touched.tags) && <span
