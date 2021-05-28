@@ -24,6 +24,7 @@ const TagsButtons = ({
     return (
         <div className={`tags-container ${className ? className : ""}`}>
             <Button
+                className="tag-btn"
                 variant={tagsList.includes("parque") ? "contained" : "outlined"}
                 color="primary"
                 onClick={onClick ?? (() => onClickHandle("parque"))}
@@ -31,6 +32,7 @@ const TagsButtons = ({
                 Parque
             </Button>
             <Button
+                className="tag-btn"
                 variant={tagsList.includes("urbano") ? "contained" : "outlined"}
                 color="primary"
                 onClick={onClick ?? (() => onClickHandle("urbano"))}
@@ -38,6 +40,7 @@ const TagsButtons = ({
                 Urbano
             </Button>
             <Button
+                className="tag-btn"
                 variant={tagsList.includes("interior") ? "contained" : "outlined"}
                 color="primary"
                 onClick={onClick ?? (() => onClickHandle("interior"))}
@@ -45,6 +48,7 @@ const TagsButtons = ({
                 Interior
             </Button>
             <Button
+                className="tag-btn"
                 variant={tagsList.includes("naturaleza") ? "contained" : "outlined"}
                 color="primary"
                 onClick={onClick ?? (() => onClickHandle("naturaleza"))}

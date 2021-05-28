@@ -4,9 +4,13 @@
   display: flex;
   width: 80%;
   padding-top: 15px;
-  justify-content: space-evenly;
+  justify-content: start;
 
   .tag-toggled {
     color: black;
+  }
+
+  .tag-btn {
+    margin-right: 14px;
   }
 }

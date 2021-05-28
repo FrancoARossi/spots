@@ -13,7 +13,12 @@ import {Field, Form, Formik} from "formik";
 import * as yup from 'yup';
 import {object} from 'yup';
 import FullScreenDialog from "../../../common/FullScreenDialog/FullScreenDialog";
+<<<<<<< Updated upstream
 import PropTypes from "prop-types";
+=======
+import axios from "axios";
+
+>>>>>>> Stashed changes
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -44,7 +49,20 @@ const AddSpotScreen = ({createSpotRequest}) => {
         setFieldValue("longitude", event.lngLat[0]);
         setFieldValue("latitude", event.lngLat[1]);
     }
+    
+    function uploadImage(img) {
+        let body = new FormData()
+        body.set('key', '0134cedbaf342391eec2d5965422e417')
+        body.append('image', img)
 
+        return axios({
+            method: 'post',
+            url: 'https://api.imgbb.com/1/upload',
+            data: body
+        })
+    }
+
+<<<<<<< Updated upstream
     const headerTextComponent = () => (
         !spotCoords ?
             <span className={"dialog-header-text"}>Seleccione una ubicación en el mapa</span>
@@ -60,6 +78,25 @@ const AddSpotScreen = ({createSpotRequest}) => {
                 color="primary"
                 variant={isSelected("parque", values) ? "contained" : "outlined"}
                 size="small"
+=======
+    const onFormSubmit = () => {
+        console.log("SUBMIT!")
+    }
+    function handleChange(e){
+        uploadImage(e.target.files[0])
+            .then(resp => {
+                console.log(resp.data.data.url_viewer) // public url
+            })
+    }
+    return (
+        <>
+            <FullScreenDialog
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
+                transitionComponent={Transition}
+                headerTextComponent={headerTextComponent}
+                className={"map-container"}
+>>>>>>> Stashed changes
             >
                 Parque
             </Button>
@@ -194,9 +231,11 @@ const AddSpotScreen = ({createSpotRequest}) => {
                                 variant="outlined"
                                 color="primary"
                                 component="label"
+                                onChange={(e)=>handleChange(e)}
                             >
                                 Añadir fotografía
-                                <input type="file" hidden/>
+                                <input type="file" accept="image/png, image/jpeg" hidden/>
+
                             </Button>
                             <span className="tags-title">Seleccionar tags:</span>
                             {renderTags(values, setFieldValue, setFieldTouched)}
