@@ -20,20 +20,22 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 const AddSpotScreen = ({createSpotRequest}) => {
-    const [selectedTags, setSelectedTags] = useState([]);
     const [openDialog, setOpenDialog] = useState(false);
     const [spotCoords, setSpotCoords] = useState(null);
 
-    const isSelected = (tag) => {
-        return selectedTags.includes(tag);
+
+    //TODO: Re-do tags logic (DISGUSTING)
+    const isSelected = (tag, values) => {
+        return values?.tags.includes(tag);
     }
 
-    const handleTagClick = (e, tag) => {
+    const handleTagClick = (e, tag, values, setFieldValue, setFieldTouched) => {
         e.preventDefault();
-        if (isSelected(tag)) {
-            setSelectedTags(selectedTags.filter((_tag) => _tag !== tag));
+        setFieldTouched("tags", true);
+        if (isSelected(tag, values)) {
+            setFieldValue("tags", values.tags.filter((_tag) => _tag !== tag));
         } else {
-            setSelectedTags([...selectedTags, tag]);
+            setFieldValue("tags", [...values.tags, tag]);
         }
     }
 
@@ -48,6 +50,47 @@ const AddSpotScreen = ({createSpotRequest}) => {
             <span className={"dialog-header-text"}>Seleccione una ubicación en el mapa</span>
             :
             <span className={"dialog-header-text"}>Ubicación seleccionada</span>
+    )
+
+    const renderTags = (values, setFieldValue, setFieldTouched) => (
+        <div className={"tags-center"}>
+            <Button
+                onClick={(e) => handleTagClick(e, "parque", values, setFieldValue, setFieldTouched)}
+                key={"parque"}
+                color="primary"
+                variant={isSelected("parque", values) ? "contained" : "outlined"}
+                size="small"
+            >
+                Parque
+            </Button>
+            <Button
+                onClick={(e) => handleTagClick(e, "urbano", values, setFieldValue, setFieldTouched)}
+                key="urbano"
+                color="primary"
+                variant={isSelected("urbano", values) ? "contained" : "outlined"}
+                size="small"
+            >
+                Urbano
+            </Button>
+            <Button
+                onClick={(e) => handleTagClick(e, "interior", values, setFieldValue, setFieldTouched)}
+                key={"interior"}
+                color="primary"
+                variant={isSelected("interior", values) ? "contained" : "outlined"}
+                size="small"
+            >
+                Interior
+            </Button>
+            <Button
+                onClick={(e) => handleTagClick(e, "naturaleza", values, setFieldValue, setFieldTouched)}
+                key={"naturaleza"}
+                color="primary"
+                variant={isSelected("naturaleza", values) ? "contained" : "outlined"}
+                size="small"
+            >
+                Naturaleza
+            </Button>
+        </div>
     )
 
     return (
@@ -104,16 +147,19 @@ const AddSpotScreen = ({createSpotRequest}) => {
                                 }}
                             />
                             <Button
-                                className={`form-field ${errors.latitude && "error-button"}`}
+                                className={`form-field ${(errors.latitude && touched.latitude) && "error-button"}`}
                                 variant="outlined"
                                 color="primary"
                                 component="label"
-                                onClick={() => setOpenDialog(true)}
+                                onClick={() => {
+                                    setFieldTouched("latitude", true);
+                                    setOpenDialog(true)
+                                }}
                             >
                                 Seleccionar ubicación
                             </Button>
-                            {errors.latitude && <span
-                                className={"MuiFormHelperText-root Mui-error"}>{errors.latitude}</span>}
+                            {(touched.latitude && errors.latitude) && <span
+                                className={"error-message"}>{errors.latitude}</span>}
                             <FullScreenDialog
                                 open={openDialog}
                                 onClose={() => setOpenDialog(false)}
@@ -153,9 +199,9 @@ const AddSpotScreen = ({createSpotRequest}) => {
                                 <input type="file" hidden/>
                             </Button>
                             <span className="tags-title">Seleccionar tags:</span>
-                            <div className={"tags-center"}>
-                                <Tags onClick={handleTagClick}/>
-                            </div>
+                            {renderTags(values, setFieldValue, setFieldTouched)}
+                            {(errors.tags && touched.tags) && <span
+                                className={"error-message"}>{errors.tags}</span>}
                             <Button className="form-field" variant="contained" color="primary"
                                     onClick={Object.entries(errors).length === 0 && submitForm}>
                                 Enviar
