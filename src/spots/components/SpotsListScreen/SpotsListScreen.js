@@ -1,13 +1,22 @@
 import "./SpotsListScreen.scss";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {Button} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {useHistory} from "react-router-dom";
+import {sortSpotsByDistanceToUser} from "../../../utils/sortSpotsByDistanceToUser";
 
-const SpotsListScreen = ({spotsList, setSelectedSpot}) => {
-
+const SpotsListScreen = ({spotsList, userPosition, setSelectedSpot}) => {
     const history = useHistory();
+    const [orderedSpots, setOrderedSpots] = useState([]);
+
+    useEffect(() => {
+        setOrderedSpots(sortSpotsByDistanceToUser(
+            spotsList,
+            userPosition
+        ))
+        //eslint-disable-next-line
+    }, [])
 
     const redirectToSpotDetails = (e, spot) => {
         e.stopPropagation();
@@ -18,7 +27,7 @@ const SpotsListScreen = ({spotsList, setSelectedSpot}) => {
     return (
         <Grid md={12} xs={12} className={"spots-list-container"}>
             <h1>Spots ordenados por distancia</h1>
-            {spotsList.map((spot) => (
+            {orderedSpots.map((spot) => (
                 <Button
                     key={spot.id}
                     onClick={(e) => redirectToSpotDetails(e, spot)}
@@ -34,6 +43,7 @@ const SpotsListScreen = ({spotsList, setSelectedSpot}) => {
 
 SpotsListScreen.propTypes = {
     spotsList: PropTypes.array,
+    userPosition: PropTypes.object,
     setSelectedSpot: PropTypes.func,
 }
 

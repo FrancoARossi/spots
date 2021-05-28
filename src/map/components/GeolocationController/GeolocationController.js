@@ -4,11 +4,23 @@ import PropTypes from "prop-types";
 import {GeolocateControl} from "react-map-gl";
 
 const GeolocationController = ({updateUserPosition}) => {
-    const geolocate = (pos) => {
+    const successPosition = (pos) => {
         updateUserPosition({
             latitude: pos.coords.latitude,
             longitude: pos.coords.longitude,
         });
+    };
+
+    const errorPosition = (error) => {
+        alert("ERROR(" + error.code + "): " + error.message);
+    };
+
+    const geolocate = () => {
+        navigator.geolocation.getCurrentPosition(
+            successPosition,
+            errorPosition,
+            positionOptions
+        );
     };
 
     const positionOptions = {

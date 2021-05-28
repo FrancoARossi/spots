@@ -38,6 +38,8 @@ const MapScreen = ({
             longitude: pos.coords.longitude,
         });
 
+        getSpotsRequest(userPosition, tagsList);
+
         updateViewport({
             latitude: pos.coords.latitude,
             longitude: pos.coords.longitude,
@@ -62,13 +64,13 @@ const MapScreen = ({
             positionOptions
         );
         // eslint-disable-next-line
-    }, []);
+    }, [])
 
     useEffect(() => {
         getSpotsRequest(userPosition, tagsList);
         setSelectedSpot(null)
         // eslint-disable-next-line
-    }, [])
+    }, [tagsList])
 
     const selectLocationProps = () => {
         if (selectLocation) {

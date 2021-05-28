@@ -30,11 +30,8 @@ const mapReducer = (state = initialState, action) => {
         case UPDATE_USER_POSITION: {
             return {
                 ...state,
-                userPosition: {
-                    latitude: action.latitude,
-                    longitude: action.longitude,
-                }
-            };
+                userPosition: {...action.newPosition},
+            }
         }
         default:
             return state;

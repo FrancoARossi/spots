@@ -1,21 +1,14 @@
 import "./TagsButtons.scss"
 import {Button} from '@material-ui/core';
-import React, {useEffect} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const TagsButtons = ({
                          tagsList,
-                         userPosition,
-                         getSpotsRequest,
                          updateFilterTags,
                          onClick,
                          className
                      }) => {
-
-    useEffect(() => {
-        getSpotsRequest(userPosition, tagsList);
-        //eslint-disable-next-line
-    }, [tagsList]);
 
     const onClickHandle = (tag) => {
         updateFilterTags(tag);
@@ -61,8 +54,6 @@ const TagsButtons = ({
 
 TagsButtons.propTypes = {
     tagsList: PropTypes.array,
-    userPosition: PropTypes.object,
-    getSpotsRequest: PropTypes.func,
     updateFilterTags: PropTypes.func,
     onClick: PropTypes.func,
     className: PropTypes.string,

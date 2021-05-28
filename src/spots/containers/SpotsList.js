@@ -4,6 +4,7 @@ import actions from "../../actions/actions";
 
 const mapStateToProps = (state) => ({
     spotsList: state.spots.spotsList,
+    userPosition: state.map.userPosition,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -6,7 +6,6 @@ import {
     UPLOAD_PHOTOGRAPH_REQUEST,
     CREATE_PHOTOGRAPH_REQUEST,
 } from "./spots.actions";
-import {sortSpotsByDistanceToUser} from "../utils/sortSpotsByDistanceToUser";
 
 const filterSpotByTags = (spot, tagsList) => {
     return tagsList.every((tag) => spot.tags.includes(tag));
@@ -23,15 +22,8 @@ const spotsMiddleware = ({dispatch, getState}) => (next) => (action) => {
                         spotsList = res.filter((spot) =>
                             filterSpotByTags(spot, action.tagsList)
                         );
-                        spotsList = sortSpotsByDistanceToUser(
-                            spotsList,
-                            action.userPosition
-                        );
                     } else {
-                        spotsList = sortSpotsByDistanceToUser(
-                            res,
-                            action.userPosition
-                        );
+                        spotsList = res;
                     }
                     dispatch(actions.spots.getSpots.response(spotsList));
                 })
