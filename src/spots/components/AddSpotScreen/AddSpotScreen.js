@@ -92,7 +92,6 @@ const AddSpotScreen = ({createSpotRequest}) => {
     )
 
     const handleFormSubmit = (values, actions) => {
-        console.log(values)
         createSpotRequest({
             name: values.name,
             description: values.description,
